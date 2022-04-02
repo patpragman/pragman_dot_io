@@ -22,7 +22,7 @@ def hello_world():  # put application's code here
 
 @app.route('/test')
 def test():
-    return "More testing!"
+    return "More testing, further testing!"
 
 if __name__ == '__main__':
     app.run()
