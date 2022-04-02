@@ -1,0 +1,21 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="Eslint" enabled="true" level="WARNING" enabled_by_default="true" />
+    <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
+      <option name="ignoredIdentifiers">
+        <list>
+          <option value="pygame.sprite.Sprite.is_controllable" />
+          <option value="pygame.sprite.Sprite.stop_rotation" />
+          <option value="pygame.sprite.Sprite.rotate_left" />
+          <option value="pygame.sprite.Sprite.rotate_right" />
+          <option value="pygame.sprite.Sprite.accelerate" />
+          <option value="pygame.sprite.Sprite.decelerate" />
+          <option value="pygame.sprite.Sprite.fire" />
+          <option value="pygame.sprite.Sprite.rotate_retrograde" />
+          <option value="pygame.sprite.Sprite.fire_counter_rate" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>
