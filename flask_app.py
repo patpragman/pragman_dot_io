@@ -22,7 +22,8 @@ def hello_world():  # put application's code here
 
 @app.route('/test')
 def test():
-    return "More testing, further testing!"
+    output = [number for number in range(0, 100)]
+    return f"More testing, further testing! <br>{output}"
 
 if __name__ == '__main__':
     app.run()
