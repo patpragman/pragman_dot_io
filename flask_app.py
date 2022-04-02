@@ -1,5 +1,8 @@
+import os
+
 import git
 from flask import Flask, request
+from os import system
 
 app = Flask(__name__)
 
@@ -7,9 +10,7 @@ app = Flask(__name__)
 @app.route('/update_server', methods=['POST'])
 def webhook():
     if request.method == 'POST':
-        repo = git.Repo('')
-        origin = repo.remotes.origin
-        origin.pull()
+        system('sync.sh')
         return 'Updated PythonAnywhere successfully', 200
     else:
         return 'Wrong event type', 400
