@@ -19,6 +19,9 @@ def webhook():
 def hello_world():  # put application's code here
     return 'Soon to be something... anything... again.... no again'
 
+@app.route('/test')
+def test():
+    return "More testing!"
 
 if __name__ == '__main__':
     app.run()
