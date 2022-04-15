@@ -6,4 +6,4 @@ git merge origin/master
 
 # now reload webapp
 echo "reloading web application"
-touch /var/www/test_pragman_io_wsgi.py
+touch var/www/test_pragman_io_wsgi.py
