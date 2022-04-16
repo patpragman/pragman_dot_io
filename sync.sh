@@ -5,5 +5,5 @@ git pull origin master
 git merge origin/master
 
 # now reload webapp
-echo "reloading web application"
+echo "reloading web application, GIT PUSH RECEIVED!"
 touch /var/www/test_pragman_io_wsgi.py
