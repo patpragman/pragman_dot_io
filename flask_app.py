@@ -13,8 +13,8 @@ app = Flask(__name__)
 @app.route('/update_server', methods=['POST'])
 def webhook():
     if request.method == 'POST':
-        origin.pull()
-        os.system('. reload.sh')
+        origin.pull()  # pull down
+        os.system('. reload.sh')  # reload
         return 'Updated PythonAnywhere successfully', 200
     else:
         return 'Wrong event type', 400
