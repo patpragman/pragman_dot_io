@@ -11,7 +11,7 @@ app = Flask(__name__)
 def webhook():
     if request.method == 'POST':
         cwd = os.getcwd()
-        print(cwd)
+        print(cwd)  # debug
         os.system(f'{cwd}/reload.sh')  # reload
         return 'Website update attempted...', 200
     else:
