@@ -24,7 +24,7 @@ def hello_world():  # put application's code here
 @app.route('/test')
 def test():
     output = "<br>".join([str(number) for number in range(50, 100)])
-    return f"Work Dammit!  More testing, further again and again and again! <br>{output}"
+    return f"I hope this works!  More testing, further again and again and again! <br>{output}"
 
 if __name__ == '__main__':
     app.run()
