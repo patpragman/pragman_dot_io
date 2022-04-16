@@ -5,7 +5,6 @@ from flask import Flask, request
 from os import system
 
 repo = git.Repo('.')
-origin = repo.remote(name='origin')
 
 app = Flask(__name__)
 
@@ -13,7 +12,7 @@ app = Flask(__name__)
 @app.route('/update_server', methods=['POST'])
 def webhook():
     if request.method == 'POST':
-        origin.pull()  # pull down
+        repo.pull('origin', 'master')
         os.system('. reload.sh')  # reload
         return 'Website update attempted...', 200
     else:
