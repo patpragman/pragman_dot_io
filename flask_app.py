@@ -1,10 +1,12 @@
-# Metar Bug
+# Digital Resume!
 # Patrick Pragman
 # Ciego Services
-# January 31, 2018
+# 16APRIL2022
 # Flask App to watch for changes in the weather
 
-from flask import Flask, render_template, request, jsonify
+import os
+
+from flask import Flask, render_template, request, jsonify, abort, send_file
 from metar import Metar
 from get_metar import get_metar
 from wxdata import get_metars, get_tafs
@@ -16,7 +18,7 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
 @app.route('/marshall')
 def N140KD():
-    return render_template('N140KD.html')
+    return render_template('misc/N140KD.html')
 
 
 @app.route('/')
@@ -49,7 +51,7 @@ def brief():
     return render_template('brief.html', metars=metars, tafs=tafs, stations=stations)
 
 
-@app.route('/brief2.py')
+@app.route('/brief2')
 def brief2():
     metars = get_metars()
     tafs = get_tafs()
@@ -69,9 +71,26 @@ def brief2():
     return render_template('brief2.html', metars=metars, tafs=tafs, stations=stations)
 
 
-@app.route('/any172')
-def any_one_seventy_two():
-    return render_template('generic172.html')
+@app.route('/misc', defaults={'req_path': ''})
+@app.route('/misc/<path:req_path>')
+def misc(req_path):
+    BASE_DIR = 'templates/misc'
+
+    # Joining the base and the requested path
+    abs_path = os.path.join(BASE_DIR, req_path)
+
+    # Return 404 if path doesn't exist
+    if not os.path.exists(abs_path):
+        return abort(404)
+
+    # Check if path is a file and serve
+    if os.path.isfile(abs_path):
+        return send_file(abs_path)
+
+    # Show directory contents
+    files = os.listdir(abs_path)
+    return render_template('misc.html', files=files)
+
 
 
 @app.route('/get_metar', methods=['POST'])
