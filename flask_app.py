@@ -20,14 +20,10 @@ def webhook():
 def hello_world():  # put application's code here
     return 'Soon to be something... anything... again.... no again'
 
-@app.route('/hello_world')
-def hello_world_2():
-    return 'Testing!  Yes!'
-
 @app.route('/test')
 def test():
     output = "<br>".join([str(number) for number in range(50, 100)])
-    return f"More testing, further testing! <br>{output}"
+    return f"More testing, further Again! <br>{output}"
 
 if __name__ == '__main__':
     app.run()
