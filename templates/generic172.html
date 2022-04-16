@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Generic 172 W&B</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+    <body>
+
+    <div id="banner" class="page-header text-center jumbotron">
+        <h1>Generic 172 W&B</h1>
+    </div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 align-left">
+                <div id = "menu_container" class="list-group">
+                    Empty Weight <input type="number" class="form-control" id="emptywt" min=1 placeholder=1 aria-describedby="button-addon1" onkeyup="updateCGMOM();" onchange="updateCGMOM();"> <br>
+                    Empty Moment <input type="number" class="form-control" id="emptymom" min=1 placeholder=1 aria-describedby="button-addon1" onkeyup="updateCGMOM();" onchange="updateCGMOM();"> <br>
+                    Pilot Seat <input type="number" class="form-control" id="pilot_seat" min= 0 placeholder=0 aria-describedby="button-addon1" onkeyup="update();" onchange="update();"> <br>
+                    Co-Pilot <input type="number" class="form-control" id="copilot_seat" min= 0 placeholder=0 aria-describedby="button-addon1" onkeyup="update();" onchange="update();"> <br>
+                    Back Seat <input type="number" class="form-control" id="back_seat" min= 0 placeholder=0 aria-describedby="button-addon1" onkeyup="update();" onchange="update();"> <br>
+                    Aft-baggage 1 <input type="number" class="form-control" id="aft_baggage_1" min= 0 placeholder=0 aria-describedby="button-addon1" onkeyup="update();" onchange="update();"> <br>
+                    Aft-baggage 2 <input type="number" class="form-control" id="aft_baggage_2" min= 0 placeholder=0 aria-describedby="button-addon1" onkeyup="update();" onchange="update();"> <br>
+                    Fuel <input type="number" class="form-control" id="fuel" min= 0 max = 240 placeholder=0 aria-describedby="button-addon1" onkeyup="update();" onchange="update();"> <br>
+                </div>
+
+            </div>
+            <div class="col-sm-8">
+                <canvas id="envelope">
+
+                </canvas>
+
+
+            </div>
+        </div>
+    </div>
+
+    </body> 
+
+    <script>
+        var mtow = 2400;
+        var empty_wt = 1542.0;
+        var empty_moment = 57570.09;
+        var empty_cg = empty_moment / empty_wt;
+        var cur_cg = empty_cg;
+        var cur_wt = empty_wt;
+        var zero_fuel_cg = cur_cg;
+        var zero_fuel_wt = empty_wt;
+        var pilot_seat_input = document.getElementById("pilot_seat");
+        var copilot_seat_input = document.getElementById("copilot_seat");
+        var back_seat_input = document.getElementById("back_seat");
+        var aft_baggage_1_input = document.getElementById("aft_baggage_1");
+        var aft_baggage_2_input = document.getElementById("aft_baggage_2");
+        var fuel_input = document.getElementById("fuel");
+        var empty_wt_input = document.getElementById("emptywt")
+        var empty_mom_imput = document.getElementById("emptymom")
+
+        empty_wt_input.value = empty_wt;
+        empty_mom_imput.value = empty_moment;
+
+
+
+
+        pilot_seat_input.value = 200;
+        fuel_input.value = 240;
+        
+        function forlim(weight){
+            var forlim;
+            var intercept = (35 - 6.5)
+            var minfor = 35 - intercept;
+            var maxfor = 36.5 - intercept;
+
+            if (weight <= 1950){
+                forlim = minfor;
+            } else if (weight >= 2400){
+                forlim = maxfor;
+            } else{
+                forlim = ((36.5 - 35)/(2400 - 1950))*weight;
+            }
+
+
+            return forlim + intercept;
+
+
+        }
+
+        function aftlim(weight){
+            return 47.3; //constant in the 172P
+        };
+
+        var envelope = document.getElementById("envelope");
+        var ctx = envelope.getContext("2d");
+
+        var scale_x = 20
+        var scale_y = 1/10
+        var origin_x = 0
+        var origin_y = 160
+        var cwidth = scale_x*(48 - 34) //edges of canvas based on CG envelope
+        var cheight = scale_y*(2500 - 900) //edges of canvas based on max weights etc.
+
+        envelope.height = cheight
+        envelope.width = cwidth
+
+        function convert_x(x){
+            var x_c = x - 34
+            x_c = x_c * scale_x;
+
+            return x_c;
+        };
+
+        function convert_y(y){
+            var y_c = y - 900;
+            y_c = y_c * scale_y;
+
+            return origin_y - y_c;
+        };
+
+
+        function set_cg(){
+            var weights = [empty_wt, Number(pilot_seat_input.value), Number(copilot_seat_input.value), Number(back_seat_input.value), Number(aft_baggage_1_input.value), Number(aft_baggage_2_input.value), Number(fuel_input.value)];
+            var stations = [empty_cg, 37, 37, 73, 95, 123, 48]
+            
+            cur_wt = weights.reduce((total,num) => total + num);
+            cur_cg = weights.map((current, i) => current*stations[i]).reduce((total,num) => total + num)/ cur_wt;
+            
+            zero_fuel_wt = cur_wt - weights.slice(-1)[0];
+            zero_fuel_cg = ((cur_wt*cur_cg)-weights.slice(-1)[0]*stations.slice(-1)[0])/zero_fuel_wt;
+
+
+            ctx.beginPath();
+            ctx.arc(convert_x(cur_cg), convert_y(cur_wt), 10, 0, 2 * Math.PI, false);
+            ctx.fillStyle = 'green';
+            ctx.fill();
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = '#003300';
+            ctx.stroke();
+
+        };
+
+        function draw_envelope(){
+            envelope.height = cheight
+            envelope.width = cwidth
+
+            var weights = [Number(empty_wt), Number(pilot_seat_input.value), Number(copilot_seat_input.value), Number(back_seat_input.value), Number(aft_baggage_1_input.value), Number(aft_baggage_2_input.value), Number(fuel_input.value)];
+            var stations = [Number(empty_cg), 37, 37, 73, 95, 123, 48]
+            
+            cur_wt = weights.reduce((total,num) => total + num);
+            cur_cg = weights.map((current, i) => current*stations[i]).reduce((total,num) => total + num)/ cur_wt;
+            
+            zero_fuel_wt = cur_wt - weights.slice(-1)[0];
+            zero_fuel_cg = ((cur_wt*cur_cg)-weights.slice(-1)[0]*stations.slice(-1)[0])/zero_fuel_wt;
+
+            //draw where CG is at
+            ctx.beginPath();
+            ctx.arc(convert_x(cur_cg), convert_y(cur_wt), 5, 0, 2 * Math.PI, false);
+            ctx.fillStyle = 'green';
+            ctx.fill();
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = '#000000';
+            ctx.stroke();
+
+            //draw text with information about current weight
+            ctx.fillStyle = "Black";
+            ctx.font = "15px Arial";
+            ctx.fillText(cur_wt.toFixed(2) + " lbs " + cur_cg.toFixed(2) + '"',convert_x(cur_cg), convert_y(cur_wt)-20);
+
+
+            //draw zero fuel CG
+            ctx.beginPath();
+            ctx.arc(convert_x(zero_fuel_cg), convert_y(zero_fuel_wt), 5, 0, 2 * Math.PI, false);
+            ctx.fillStyle = 'red';
+            ctx.fill();
+            ctx.lineWidth = 1;
+            ctx.strokeStyle = '#000000';
+            ctx.stroke();
+
+            //zero fuel weight.
+            ctx.fillStyle = "Black";
+            ctx.font = "15px Arial";
+            ctx.fillText(zero_fuel_wt.toFixed(2) + " lbs " + zero_fuel_cg.toFixed(2) + '"', convert_x(zero_fuel_cg), convert_y(zero_fuel_wt)+10);
+
+            //draw line between
+            ctx.moveTo(convert_x(cur_cg), convert_y(cur_wt))
+            ctx.lineTo(convert_x(zero_fuel_cg), convert_y(zero_fuel_wt))
+
+            ctx.moveTo(convert_x(35), convert_y(0))
+            ctx.lineTo(convert_x(35), convert_y(1950))
+            ctx.lineTo(convert_x(36.5), convert_y(2400))
+            ctx.lineTo(convert_x(47.3), convert_y(2400))
+            ctx.lineTo(convert_x(47.3), convert_y(0))
+            ctx.lineTo(convert_x(35), convert_y(0))
+            ctx.stroke();
+        };
+
+        draw_envelope();
+
+        function update(){
+            draw_envelope();
+        }
+
+        function updateCGMOM(){
+            //this is horible awful spaghetti - whatever, it needs to work in the morning.
+            empty_moment = empty_mom_imput.value;
+            empty_wt = empty_wt_input.value;
+            empty_cg = empty_moment / empty_wt;
+            update();
+        };
+
+    </script>
+
+</html>

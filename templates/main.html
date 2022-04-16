@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com -->
+  <title>Patrick Pragman</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+  body {
+    font: 400 15px Lato, sans-serif;
+    line-height: 1.8;
+    color: #818181;
+  }
+  h2 {
+    font-size: 24px;
+    text-transform: uppercase;
+    color: #303030;
+    font-weight: 600;
+    margin-bottom: 30px;
+  }
+  h4 {
+    font-size: 19px;
+    line-height: 1.375em;
+    color: #303030;
+    font-weight: 400;
+    margin-bottom: 30px;
+  }
+  .jumbotron {
+    background-color: #122340;
+    color: #fff;
+    padding: 100px 25px;
+    font-family: Montserrat, sans-serif;
+    background-image: url("{{url_for('static', filename='herobanner.png')}}");
+    background-size:cover;
+  }
+
+  .body_text{
+    text-align: justify;
+    text-justify: inter-word;
+    width: 65%;
+  }
+  .container-fluid {
+    padding: 60px 50px;
+  }
+  .bg-grey {
+    background-color: #f6f6f6;
+  }
+  .logo-small {
+    color: #122340;
+    font-size: 50px;
+  }
+  .logo {
+    color: #122340;
+    font-size: 200px;
+  }
+  .thumbnail {
+    padding: 0 0 15px 0;
+    border: none;
+    border-radius: 0;
+  }
+  .thumbnail img {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+  }
+  .carousel-control.right, .carousel-control.left {
+    background-image: none;
+    color: #122340;
+  }
+  .carousel-indicators li {
+    border-color: #122340;
+  }
+  .carousel-indicators li.active {
+    background-color: #122340;
+  }
+  .item h4 {
+    font-size: 19px;
+    line-height: 1.375em;
+    font-weight: 400;
+    font-style: italic;
+    margin: 70px 0;
+  }
+  .item span {
+    font-style: normal;
+  }
+  .panel {
+    border: 1px solid #122340;
+    border-radius:0 !important;
+    transition: box-shadow 0.5s;
+  }
+  .panel:hover {
+    box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+  }
+  .panel-footer .btn:hover {
+    border: 1px solid #122340;
+    background-color: #fff !important;
+    color: #122340;
+  }
+  .panel-heading {
+    color: #fff !important;
+    background-color: #122340 !important;
+    padding: 25px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+  .panel-footer {
+    background-color: white !important;
+  }
+  .panel-footer h3 {
+    font-size: 32px;
+  }
+  .panel-footer h4 {
+    color: #aaa;
+    font-size: 14px;
+  }
+  .panel-footer .btn {
+    margin: 15px 0;
+    background-color: #122340;
+    color: #fff;
+  }
+  .navbar {
+    margin-bottom: 0;
+    background-color: #122340;
+    z-index: 9999;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+    font-family: Montserrat, sans-serif;
+
+  }
+  .navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+  }
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #122340 !important;
+    background-color: #fff !important;
+  }
+  .navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+  }
+  footer .glyphicon {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #122340;
+  }
+  .slideanim {visibility:hidden;}
+  .slide {
+    animation-name: slide;
+    -webkit-animation-name: slide;
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    visibility: visible;
+  }
+  @keyframes slide {
+    0% {
+      opacity: 0;
+      transform: translateY(70%);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  }
+  @-webkit-keyframes slide {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(70%);
+    }
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0%);
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .col-sm-4 {
+      text-align: center;
+      margin: 25px 0;
+    }
+    .btn-lg {
+      width: 100%;
+      margin-bottom: 35px;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .logo {
+      font-size: 150px;
+    }
+  }
+  </style>
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <!-- <a class="navbar-brand" href="#myPage">Logo</a> -->
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#main">Main</a></li>
+        <li><a href="#about">About Me</a></li>
+        <li><a href="#resume">Resume</a></li>
+        <li><a href="#projects">Portfolio</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div id='main' class="jumbotron text-center">
+  <h1>Patrick Pragman</h1>
+</div>
+
+<!-- Container (About Me)) -->
+<div id="about" class="container-fluid">
+  <div class="row" align="center">
+
+    <div class="col">
+      <h2>About Me</h2><br>
+      <img src="{{url_for('static', filename='me.jpeg')}}" style="width:65%">
+      <p class="body_text" >I'm a husband, father, lifelong learner, and adventurer.  I was a professional pilot for over a decade.  I like solving hard problems with cool people and challenging the status quo.  I've been a student my whole life, but formally, I have a BS in Aviation and a BS in math.</p>
+
+      <p class="body_text">I am conversational in Russian and can get by in Spanish.  My French can order a beer or get a room for the night, but that's about it.  I like learning languages and enjoy immersion in different cultures.</p>
+
+      <p class="body_text">In 2018, I backpacked solo across Spain after being out of work due to illness.  I hope to do it again one day - maybe with the whole family.</p>
+
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Container (Resume )) -->
+<div id="resume" class="container-fluid">
+  <div class="row" align="center">
+
+    <div class="col">
+      <h2>Resume</h2><br>
+      <img src="{{url_for('static', filename='inflight.jpg')}}" style="width:65%">
+      <p class="body_text">The quick synopsis is that I'm a college educated, ATP rated pilot, with over 7000hrs of accident, incident, and violation free flight hours, mostly in Alaska.  I can write manuals, develop training programs, program Python, and more.  I know how to work with regulators and have gotten manuals approved.  I've been a check airman, company instructor, and line pilot in a wide array of 135 operations.  I enjoy designing and applying technological solutions to small airline operations.</p>
+
+      <p class="body_text" >Here's a <a href="https://docs.google.com/document/d/1aVhPFsyncbSXIfT7lq4E7l2dtaTM0LmSNbgNMcFuPyI/edit?usp=sharing">link</a> to my last resume.  I'm currently looking for opportunities in the development space.  I do consulting work if necessary, <a href="mailto:pat@pragman.io">contact me by email</a> with any questions or give me a call at <a href="tel: +19077825400">+1 (907) 782-5400</a>.</p>
+
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Container (Resume )) -->
+<div id="projects" class="container-fluid">
+  <div class="row" align="center">
+
+    <div class="col">
+      <h2>Projects</h2><br>
+      <img src="{{url_for('static', filename='projects.jpeg')}}" style="width:65%">
+      <h3>This Site</h3>
+      <p class="body_text">This site is my home on the web, and serves as my digital resume.  I started learning Python several years ago and have slowly been getting more serious about trying to hone some web development skills.  I use <a href="https://www.pythonanywhere.com">PythonAnywhere</a> to host the Flask App that renders this page. I purchased the domain from Google Domains.  This was mostly just an exercise in learning Bootstrap and shameless self promotion.</p>
+
+      <h3>Weather Watcher</h3>
+      <p class="body_text">Part of flying in Alaska is "weather hold."  The tedious time you spend sitting in front of a screen refreshing the weather to see if it's changed enough to safely go fly.  A while back I put together a tool using Flask and Bootstrap and a little Javascript to refresh the weather for me.  You can find it <a href="/wxwatch">here.</a></p>
+
+      <h3>Simple Inventory</h3>
+      <p class="body_text">I've worked at a few places that didn't have much of an inventory control process for their air freight.  We mostly just put stuff in the warehouse then manually went around looking for it when it was time to fly.  I decided to try my hand at a solution to that.  I created a simple web app with that can manage an inventory.  You can check stuff in, check stuff out, and create new customers and users.  It creates labels that have a QR code that load them into a cart.  It uses Python for the back end (with flask, like this site), SQLite for the database, and a little HTML and Javascript to add functionality.  Check it out <a href="https://ciegoservices.pythonanywhere.com">here.</a></p>
+
+
+    </div>
+
+  </div>
+</div>
+
+<footer class="container-fluid text-center">
+  <a href="#myPage" title="To Top">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a>
+  <p>Bootstrap Theme Made By <a href="https://www.w3schools.com" title="Visit w3schools">www.w3schools.com</a></p>
+</footer>
+
+<script>
+$(document).ready(function(){
+  // Add smooth scrolling to all links in navbar + footer link
+  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+    // Make sure this.hash has a value before overriding default behavior
+    if (this.hash !== "") {
+      // Prevent default anchor click behavior
+      event.preventDefault();
+
+      // Store hash
+      var hash = this.hash;
+
+      // Using jQuery's animate() method to add smooth page scroll
+      // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+      $('html, body').animate({
+        scrollTop: $(hash).offset().top
+      }, 900, function(){
+
+        // Add hash (#) to URL when done scrolling (default click behavior)
+        window.location.hash = hash;
+      });
+    } // End if
+  });
+
+  $(window).scroll(function() {
+    $(".slideanim").each(function(){
+      var pos = $(this).offset().top;
+
+      var winTop = $(window).scrollTop();
+        if (pos < winTop + 600) {
+          $(this).addClass("slide");
+        }
+    });
+  });
+})
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+ <title>Marshall's Mooney</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+    <body>
+
+    <div id="banner" class="page-header text-center jumbotron">
+        <h1>N140KD</h1>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 align-left">
+                <div id="menu_container" class="list-group">
+                    Takeoff Weight <input type="number" class="form-control" id="takeoff_weight" min="1832" value="2740" aria-describedby="button-addon1" onkeyup="update();" onchange="update();"> <br>
+                    Landing Weight <input type="number" class="form-control" id="landing_weight" min="1832" value="1823" aria-describedby="button-addon1" onkeyup="update();" onload="update();" onchange="update();"> <br>
+                </div>
+
+
+            </div>
+            <div class="col-sm-4 align-right">
+                <div id="menu_container" class="list-group">
+                    <h3>Takeoff Ref Speeds</h3>
+                    <p id  = "takeoff_vso_label">Vso = 53</p>
+                    <p id  = "takeoff_ref_label">1.3 Vso = 72</p>
+                    <p id  = "takeoff_va_label">Va = 120</p>
+
+                </div>
+            </div>
+            <div class="col-sm-4 align-right">
+                <div id="menu_container" class="list-group">
+                    <h3>Landing Ref Speeds</h3>
+                    <p id  = "landing_vso_label">Vso = 53</p>
+                    <p id  = "landing_ref_label">1.3 Vso = 72</p>
+                    <p id  = "landing_va_label">Va = 120</p>
+
+                </div>
+            </div>
+    </div>
+
+    <script>
+
+        var max_gross = 2740;
+        var empty_weight = 1823;
+
+        var va_gross = 120;
+        var vso_gross = 55
+
+        function update(){
+            var takeoff_weight = document.getElementById("takeoff_weight").value;
+            var landing_weight = document.getElementById("landing_weight").value;
+
+            //landing ref data labels
+            var landing_vso_label = document.getElementById("landing_vso_label");
+            var landing_vref_label = document.getElementById("landing_ref_label");
+            var landing_va_label = document.getElementById("landing_va_label");
+
+            //takeoff ref data labels
+            var takeoff_vso_label = document.getElementById("takeoff_vso_label");
+            var takeoff_vref_label = document.getElementById("takeoff_ref_label");
+            var takeoff_va_label = document.getElementById("takeoff_va_label");
+
+
+            //compute this all now
+            var takeoff_factor = Math.sqrt(takeoff_weight / max_gross);
+            var landing_factor = Math.sqrt(landing_weight / max_gross);
+
+            var takeoff_va = Math.round(va_gross*takeoff_factor, 2);
+            var takeoff_vref = Math.round(1.3*vso_gross*takeoff_factor,2);
+            var takeoff_vso = Math.round(vso_gross*takeoff_factor, 2);
+
+            var landing_va = Math.round(va_gross*landing_factor, 2);
+            var landing_vref = Math.round(1.3*vso_gross*landing_factor, 2);
+            var landing_vso = Math.round(vso_gross*landing_factor, 2);
+
+            landing_vso_label.innerText = "Vso = " + landing_vso;
+            landing_vref_label.innerText = "Vref = " + landing_vref;
+            landing_va_label.innerText = "Va = " + landing_va;
+
+            takeoff_vso_label.innerText = "Vso = " + takeoff_vso;
+            takeoff_vref_label.innerText = "Vref = " + takeoff_vref;
+            takeoff_va_label.innerText = "Va = " + takeoff_va;
+
+
+
+
+
+        };
+
+    </script>
+
+
+
+</body></html>

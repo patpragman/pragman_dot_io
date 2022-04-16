@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Station Keeper</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+</head>
+
+    <body>
+
+    <div id="banner" class="jumbotron text-center">
+        <h1>Stationkeeper</h1>
+        <p>A tool for situational awareness.</p> 
+    </div>
+    
+    <div class="container">
+        <div class="row">
+            <div class="col align-left" id='monitor_col' style="max-height: 350px; overflow-x: hidden;">
+                <h3>Current Stations</h3>
+                <div class='list_group' id = "watch_list_div" class = "container scrollable" >
+
+
+                </div>
+            </div>
+
+            <div class="col align-right" id='selector_col' style="max-height: 350px; overflow-x: hidden;">
+                <!-- Station Selector goes here-->
+                <h3>Search for a WX Station:</h3><br>
+
+                <div class="input-group mb-3">
+                        <input type="text" class="form-control" id="search_box" placeholder="search for a station" aria-label="Example ('text with button addon')" aria-describedby="button-addon1" onkeyup="unhide();">
+                </div>
+                <div class='list-group' id="station_list_div" class="container scrollable list-group-item-action" style="max-height: 225px; overflow-x: hidden;">
+                    <!--Javascript will populate this from the stations.JSON file-->
+                    Loading Stations...
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body> 
+    <script type=text/javascript src="{{
+        url_for('static', filename='js/main.js') }}"></script>
+</html>
