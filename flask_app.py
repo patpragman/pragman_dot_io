@@ -22,7 +22,7 @@ def hello_world():  # put application's code here
 
 @app.route('/hello_world')
 def hello_world_2():
-    return 'Testing 123!  456789...'
+    return 'Testing 123!'
 
 @app.route('/test')
 def test():
