@@ -14,6 +14,7 @@ app = Flask(__name__)
 def webhook():
     if request.method == 'POST':
         origin.pull()
+        os.system('. sync.sh')
         return 'Updated PythonAnywhere successfully', 200
     else:
         return 'Wrong event type', 400
