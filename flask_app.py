@@ -20,6 +20,10 @@ def webhook():
 def hello_world():  # put application's code here
     return 'Soon to be something... anything... again.... no again'
 
+@app.route('/hello_world')
+def hello_world_2():
+    return 'Testing 123!'
+
 @app.route('/test')
 def test():
     output = "<br>".join([str(number) for number in range(50, 100)])
