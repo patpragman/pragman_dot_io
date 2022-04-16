@@ -4,7 +4,7 @@ import git
 from flask import Flask, request
 from os import system
 
-repo = git.Repo('.')
+repo = git.cmd.Git('.')
 
 app = Flask(__name__)
 
@@ -12,7 +12,7 @@ app = Flask(__name__)
 @app.route('/update_server', methods=['POST'])
 def webhook():
     if request.method == 'POST':
-        repo.pull('origin', 'master')
+        repo.pull()
         os.system('. reload.sh')  # reload
         return 'Website update attempted...', 200
     else:
