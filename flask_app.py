@@ -6,17 +6,6 @@ from os import system
 
 app = Flask(__name__)
 
-
-@app.route('/update_server', methods=['POST'])
-def webhook():
-    if request.method == 'POST':
-        cwd = os.getcwd()
-        os.system(f'{cwd}/test/reload.sh')  # reload
-        return 'Website update attempted...', 200
-    else:
-        return 'Wrong event type', 400
-
-
 @app.route('/')
 def hello_world():  # put application's code here
     return 'Soon to be something... anything... again.... no again'
