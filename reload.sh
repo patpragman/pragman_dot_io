@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # fetch changes
 
 git pull
