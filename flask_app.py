@@ -13,7 +13,6 @@ app = Flask(__name__)
 def webhook():
     if request.method == 'POST':
         repo.pull('origin', 'master')
-        repo.merge('origin', 'master')
         os.system('. reload.sh')  # reload
         return 'Website update attempted...', 200
     else:
