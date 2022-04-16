@@ -1,4 +1,5 @@
 #!/bin/bash
+# make executable at very least...
 
 cd /home/ciegoservices/test
 
