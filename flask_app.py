@@ -1,6 +1,6 @@
 import os
-
 import git
+
 from flask import Flask, request
 from os import system
 
@@ -15,7 +15,7 @@ def webhook():
     if request.method == 'POST':
         origin.pull()  # pull down
         os.system('. reload.sh')  # reload
-        return 'Updated PythonAnywhere successfully', 200
+        return 'Website update attempted...', 200
     else:
         return 'Wrong event type', 400
 
