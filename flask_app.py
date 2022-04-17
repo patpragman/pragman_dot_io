@@ -15,7 +15,6 @@ from local_config import Path
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
-
 @app.route('/marshall')
 def N140KD():
     return render_template('misc/N140KD.html')
@@ -74,22 +73,13 @@ def brief2():
 @app.route('/misc', defaults={'req_path': ''})
 @app.route('/misc/<path:req_path>')
 def misc(req_path):
-    BASE_DIR = 'templates/misc'
 
-    # Joining the base and the requested path
-    abs_path = os.path.join(BASE_DIR, req_path)
+    misc_files = os.listdir(f"{app.template_folder}/misc")
 
-    # Return 404 if path doesn't exist
-    if not os.path.exists(abs_path):
-        return abort(404)
-
-    # Check if path is a file and serve
-    if os.path.isfile(abs_path):
-        return send_file(abs_path)
-
-    # Show directory contents
-    files = os.listdir(abs_path)
-    return render_template('misc.html', files=files)
+    if req_path in misc_files:
+        return render_template(f"misc/{req_path}")
+    else:
+        return render_template('misc.html', files=misc_files)
 
 
 

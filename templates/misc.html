@@ -6,12 +6,12 @@
 </head>
 
 <body>
-<h3>Misc. scripts:</h3>
-<ul>
+<h3>Various scripts and html docs:</h3>
+<ul style="list-style: none;">
     {% for file in files %}
     <li>
         <a href="{{ (request.path + '/' if request.path != '/' else '') + file }}">
-            {{ (request.path + '/' if request.path != '/' else '') + file }}
+            {{ file }}
         </a>
     </li>
     {% endfor %}
