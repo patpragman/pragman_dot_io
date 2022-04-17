@@ -24,8 +24,7 @@ def get_metar(station):
         try:
             # If the input is a string, we need to try to open the URL with the
             # title of the station, then parse it as a METAR
-            target_url = "{base_url}/{station_id}.TXT".format(base_url=base_url, station_id=station)
-
+            target_url = f"{base_url}/{station}.TXT"
             url_hypertext = urlopen(target_url)  # try to open the URL
             return_string = ''  # this is what I will return from the URL I have opened
 
@@ -42,10 +41,11 @@ def get_metar(station):
                     return (True, return_string)
 
             if not return_string:
-                return (False, 'No data returned from the NWS for {station_id}'.format(station_id=station))
+                return (False, f'No data returned from the NWS for {station}')
 
-        except:
-            return (False, '{station_id}'.format(station_id=station) + ' not found.')
+        except Exception as err:
+            print(err)
+            return (False, f'{station} {err}')
 
     else:
         return (False, "Unable to parse non-string imputs")

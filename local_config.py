@@ -3,4 +3,4 @@ import os
 
 
 class Path:
-    stations = f"{os.getcwd()}/static_json/stations.json"
+    stations = f"{os.getcwd()}/static/js/stations.json"

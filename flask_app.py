@@ -27,7 +27,7 @@ def index():
 
 @app.route('/wxwatch')
 def wxwatch():
-    return render_template('index.html')
+    return render_template('wxwatcher.html')
 
 
 @app.route('/brief')
@@ -86,7 +86,6 @@ def misc(req_path):
 @app.route('/get_metar', methods=['POST'])
 def get_report():
     req_data = request.form['code']
-
     try:
         raw_report = get_metar(req_data)
         if raw_report[0]:
