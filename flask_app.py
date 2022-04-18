@@ -15,10 +15,6 @@ from local_config import Path
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
-@app.route('/marshall')
-def N140KD():
-    return render_template('misc/N140KD.html')
-
 
 @app.route('/')
 def index():
