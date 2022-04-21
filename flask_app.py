@@ -36,12 +36,12 @@ def brief():
     for sta in stations:
         if sta not in metars:
             metars[sta] = {}
-            metars[sta][
-                'raw_text'] = "The station " + sta + " is currently unavailable.  Waiting on NWS data - try refreshing."
+            metars[sta]['raw_text'] = \
+                f"The station {sta} is currently unavailable.  Waiting on NWS data - try refreshing."
         if sta not in tafs:
             tafs[sta] = {}
-            tafs[sta][
-                'raw_text'] = "The station " + sta + " is currently unavailable.  Waiting on NWS data - try refreshing."
+            tafs[sta]['raw_text'] = \
+                "The station {sta} is currently unavailable.  Waiting on NWS data - try refreshing."
 
     return render_template('brief.html', metars=metars, tafs=tafs, stations=stations)
 
@@ -89,18 +89,14 @@ def get_report():
             obs = Metar.Metar(raw_report[1])
 
             lowest = 100000
-            try:
-                for skc in obs.sky:
-                    # find the lowest ceiling
-                    ht = int(skc[1].value())
+            for skc in obs.sky:
+                # find the lowest ceiling
+                ht = int(skc[1].value())
 
-                    # a ceiling is the lowest broken or overcast layer
-                    if (skc[0] == "BKN" or skc[0] == "OVC"):
-                        if ht < lowest:
-                            lowest = skc[1].value()
-            except:
-                # if this fails, it's fine, just pass out of here and leave 100k feet as the ceiling
-                pass
+                # a ceiling is the lowest broken or overcast layer
+                if (skc[0] == "BKN" or skc[0] == "OVC"):
+                    if ht < lowest:
+                        lowest = skc[1].value()
 
             # validate some of the things I want to send back
             # python gets angry if you don't make sure there is data to send
