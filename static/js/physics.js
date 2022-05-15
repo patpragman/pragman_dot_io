@@ -82,3 +82,6 @@ o.v = Vector(1, 1)
 var objects = [o]
 
 window.requestAnimationFrame(draw)
+
+ctx.fillStyle = "#FF0000";
+ctx.fillRect(0, 0, 150, 75);
