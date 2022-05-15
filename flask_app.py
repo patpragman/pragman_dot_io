@@ -25,9 +25,7 @@ def index():
 def wxwatch():
     return render_template('wxwatcher.html')
 
-@app.route('/nbody.html')
-def nbody():
-    return render_template('nbody.html')
+
 
 @app.route('/brief')
 def brief():
