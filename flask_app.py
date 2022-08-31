@@ -81,11 +81,12 @@ def misc(req_path):
 
 @app.route("/blog")
 def access_blog():
-    files_in_blog_folder = os.listdir("blog_posts")
+    blog_folder = os.path.join(app.root_path, 'blog_posts')
+    files_in_blog_folder = os.listdir(blog_folder)
 
     blog_posts = []
     for file_name in files_in_blog_folder:
-        with open(f"blog_posts/{file_name}", "r") as blog_post_file:
+        with open(f"{blog_folder}/{file_name}", "r") as blog_post_file:
             blog_post = toml.load(blog_post_file)
             blog_posts.append(blog_post)
 
