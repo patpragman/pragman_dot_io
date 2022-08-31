@@ -5,7 +5,7 @@
 # Flask App to watch for changes in the weather
 
 import os
-
+import toml
 from flask import Flask, render_template, request, jsonify, abort, send_file
 from metar import Metar
 from get_metar import get_metar
@@ -78,6 +78,20 @@ def misc(req_path):
     else:
         return render_template('misc.html', files=misc_files)
 
+
+@app.route("/blog")
+def access_blog():
+    files_in_blog_folder = os.listdir("blog_posts")
+
+    blog_posts = []
+    for file_name in files_in_blog_folder:
+        with open(f"blog_posts/{file_name}", "r") as blog_post_file:
+            blog_post = toml.load(blog_post_file)
+            blog_posts.append(blog_post)
+
+    blog_posts.sort(key=lambda post: post["date"], reverse=True)
+
+    return render_template('unsexy_blog.html', blog_posts=blog_posts)
 
 
 @app.route('/get_metar', methods=['POST'])
