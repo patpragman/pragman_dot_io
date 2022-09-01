@@ -87,7 +87,8 @@ def access_blog():
     blog_posts = []
     for file_name in files_in_blog_folder:
         with open(f"{blog_folder}/{file_name}", "r") as blog_post_file:
-            blog_post = toml.load(blog_post_file)
+            blog_post = toml.loads(blog_post_file.read())  # work around for bug in toml
+            print(blog_post)
             blog_posts.append(blog_post)
 
     blog_posts.sort(key=lambda post: post["date"], reverse=True)
