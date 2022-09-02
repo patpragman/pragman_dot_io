@@ -1,18 +1,19 @@
 title = "Wow... I guess I'm a grad student now?"
 date = "2022/09/01"
-content = '''suffice it to say this is my first "real" post in this research blog.
+content = '''
+<p>suffice it to say this is my first "real" post in this research blog.</p>
 
-This is Thursday, the 1st of September, and it's finally sinking in.  I'm a grad student and this is happening.  My
+<p>This is Thursday, the 1st of September, and it's finally sinking in.  I'm a grad student and this is happening.  My
 classes are all fantastic, extremely interesting, and engrossing, and things seem off to a great start.  The first thing
 that needs to be done is I need to start coming up with projects for my class in artificial intelligence and my clas in
-software engineering.
+software engineering.</p>
 
-At the present, I'm not entirely sure what I want to build.  There's a strong project component to both courses though,
+<p>At the present, I'm not entirely sure what I want to build.  There's a strong project component to both courses though,
 so it's kind of critical that I come up with something.  My group in the SWE Course and I are considering trying to do
-something that involves machine learning and the web, but who knows what the right thing to do is as of yet.
+something that involves machine learning and the web, but who knows what the right thing to do is as of yet.</p>
 
-This weekend will be spent looking at various research projects and starting to delve into what I'm going to be working
-on during my time in this program.  Off the top of my head, I need to:
+<p>This weekend will be spent looking at various research projects and starting to delve into what I'm going to be working
+on during my time in this program.  Off the top of my head, I need to:</p>
 
 <ul>
     <li>Read a couple of papers on Google Scholar for the AI course</li>
@@ -21,6 +22,6 @@ on during my time in this program.  Off the top of my head, I need to:
     <li>Come up with a handful of SWE project ideas</li>
 </ul>
 
-over the next little bit I'll have to dust off my git proficiency again, and start looking at what I'm going to do as
-part of my additional requirements as a grad student.  This is crazy.  "Here we go!"
+<p>over the next little bit I'll have to dust off my git proficiency again, and start looking at what I'm going to do as
+part of my additional requirements as a grad student.  This is crazy.  "Here we go!"</p>
 '''
