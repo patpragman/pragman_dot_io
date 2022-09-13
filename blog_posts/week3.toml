@@ -1,0 +1,22 @@
+title = "Agile Research"
+date = "2022/09/13"
+content = '''
+<p>  At the start of week 3 I'm getting more and more accustomed to the idea that one of the most important courses
+I am taking during my research is the software engineering course.
+</p>
+<p>
+For one, we're covering some techniques and best-practices that I think are critically important.
+For instance, what is the feedback strategy that I'm going to use in furtherance of this research?
+Further, how am I going to iterate quickly in a research environment?  What tasks in research can
+be automated and how can the research process be self-testing along the way?
+</p>
+
+<p>
+I wonder what could be used to more rapidly iterate through ideas during the research process?  I'll
+have to find out as I go.  That, or is there tooling I could use towards that end?  Software like
+pivotal tracker that would make it easier to chart out the biggest landmarks during the research
+project?  What are the big events - the "epics" (ugh I hate agile nomenclature) for the research?
+Should I be trying to map out a general research strategy from the start of this?  How can I "fail fast"
+and how can I continuously integrate my research?
+</p>
+'''
