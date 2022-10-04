@@ -1,7 +1,6 @@
 title = "Flashcards for fellow students!"
 date = "2022/10/03"
-content = '''
-
+content = '''<h3> Flashcards!</h3>
 Requirements should be ____.<br>	Testable.
 Scenario testing is part of ______ test?<br>	Release<br>
 How does scenario testing work?<br>	You write a story and explain in plain english how the test proceeds.<br>
