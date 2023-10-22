@@ -80,6 +80,8 @@ def misc(req_path):
         return render_template('misc.html', files=misc_files)
 
 
+"""
+this was stupid, figure out again later
 @app.route("/blog")
 def access_blog():
     blog_folder = os.path.join(app.root_path, 'blog_posts')
@@ -114,7 +116,7 @@ def access_blog():
     blog_posts.sort(key=lambda post: post["date"], reverse=True)
 
     return render_template('unsexy_blog.html', blog_posts=blog_posts)
-
+"""
 
 @app.route('/get_metar', methods=['POST'])
 def get_report():
