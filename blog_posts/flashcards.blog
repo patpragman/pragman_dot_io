@@ -1,6 +1,11 @@
-title = "Flashcards for fellow students!"
-date = "2022/10/03"
-content = '''<h3> Flashcards!</h3>
+title:
+Flashcards for fellow students!
+
+date:
+2022/10/03
+
+content:
+<h3> Flashcards!</h3>
 Requirements should be ____.<br>	Testable.
 Scenario testing is part of ______ test?<br>	Release<br>
 How does scenario testing work?<br>	You write a story and explain in plain english how the test proceeds.<br>
@@ -92,4 +97,3 @@ Chapter 3 Key Point:<br><br>Agile development practices include requirements exp
 <div>Chapter 3 Key Point:</div><div><br></div><div>To scale agile methods, some _____-______ practices have to be integrated with agile practice.<br></div>	plan-based<br>
 
 here ya go guys!
-'''

@@ -1,6 +1,10 @@
-title = "Childlike wonder?"
-date = "2022/09/08"
-content = '''
+title:
+Childlike wonder?
+
+date:
+2022/09/08
+
+content:
 <p>So, on to week two.  I feel like I'm learning an immense ammount of stuff - most notably I think there's an
 important amount of knowledge that can be gained from my course in statistics and my software engineering course.
 </p>
@@ -50,4 +54,3 @@ this stuff right now.  We truly live in the future.  We're studying amazing stuf
 but the folks in the classes seem pretty alienated - and it's weird to see a stock ticker running to announce profits
 to an empty business school.
 </p>
-'''

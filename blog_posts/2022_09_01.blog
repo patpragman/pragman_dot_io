@@ -1,6 +1,10 @@
-title = "Wow... I guess I'm a grad student now?"
-date = "2022/09/01"
-content = '''
+title:
+Wow... I guess I'm a grad student now?
+
+date:
+2022/09/01
+
+content:
 <p>suffice it to say this is my first "real" post in this research blog.</p>
 
 <p>This is Thursday, the 1st of September, and it's finally sinking in.  I'm a grad student and this is happening.  My
@@ -24,4 +28,3 @@ on during my time in this program.  Off the top of my head, I need to:</p>
 
 <p>over the next little bit I'll have to dust off my git proficiency again, and start looking at what I'm going to do as
 part of my additional requirements as a grad student.  This is crazy.  "Here we go!"</p>
-'''

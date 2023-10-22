@@ -11,6 +11,7 @@ from metar import Metar
 from get_metar import get_metar
 from wxdata import get_metars, get_tafs
 from local_config import Path
+from datetime import datetime
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
@@ -86,10 +87,29 @@ def access_blog():
 
     blog_posts = []
     for file_name in files_in_blog_folder:
+
         with open(f"{blog_folder}/{file_name}", "r") as blog_post_file:
-            blog_post = toml.loads(blog_post_file.read())  # work around for bug in toml
-            print(blog_post)
-            blog_posts.append(blog_post)
+            # quick parser for my blog posts - couldn't get the toml library to do
+            # exactly what I wanted, so this is an a horrific hack to solve this problem
+            # to future me, I apologize.
+            blog_post = {"title:": [],
+                         "date:": [],
+                         "content:": []}
+
+            key = None
+            for line in blog_post_file.readlines():
+                if line.strip() in blog_post:
+                    key = line.strip()
+                    continue
+                else:
+                    blog_post[key].append(line)
+
+            blog_post['title:'] = "".join(blog_post['title:'])
+            blog_post['date:'] = datetime.strptime("".join(blog_post['date:']).strip(), "%Y/%m/%d")
+            blog_post['content:'] = "".join(blog_post['content:'])
+
+            data = {k.replace(":", ""):v for k,v in blog_post.items()}
+            blog_posts.append(data)
 
     blog_posts.sort(key=lambda post: post["date"], reverse=True)
 
