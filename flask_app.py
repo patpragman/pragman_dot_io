@@ -12,6 +12,7 @@ from get_metar import get_metar
 from wxdata import get_metars, get_tafs
 from local_config import Path
 from datetime import datetime
+from flask import send_file
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
@@ -26,7 +27,10 @@ def index():
 def wxwatch():
     return render_template('wxwatcher.html')
 
-
+@app.route('/download_bib')
+def download_bib():
+    path = "static/quickbib.pdf"
+    return send_file(path, as_attachment=True)
 
 @app.route('/brief')
 def brief():
