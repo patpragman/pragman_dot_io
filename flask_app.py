@@ -29,7 +29,7 @@ def wxwatch():
 
 @app.route('/download_bib')
 def download_bib():
-    path = "static/quickbib.pdf"
+    path = f"{os.getcwd()}/static/quickbib.pdf"
     return send_file(path, as_attachment=True)
 
 @app.route('/brief')
