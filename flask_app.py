@@ -28,7 +28,7 @@ def wxwatch():
     return render_template('wxwatcher.html')
 
 @app.route('/proposal')
-def download_bib():
+def proposal():
     path = f"{os.getcwd()}/static/proposal.pdf"
     return send_file(path, as_attachment=True)
 
