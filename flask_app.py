@@ -27,6 +27,11 @@ def index():
 def wxwatch():
     return render_template('wxwatcher.html')
 
+@app.route('/proposal')
+def download_bib():
+    path = f"{os.getcwd()}/static/proposal.pdf"
+    return send_file(path, as_attachment=True)
+
 @app.route('/download_bib')
 def download_bib():
     path = f"{os.getcwd()}/static/quickbib.pdf"
