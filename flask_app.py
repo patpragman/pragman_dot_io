@@ -37,45 +37,10 @@ def download_bib():
     path = f"{os.getcwd()}/static/quickbib.pdf"
     return send_file(path, as_attachment=True)
 
-@app.route('/brief')
-def brief():
-    metars = get_metars()
-    tafs = get_tafs()
 
-    stations = ["PALP", "PAKU", "PASC", "PAQT", "PAAD", "PAKV", "PABR", "PABT"]
-
-    for sta in stations:
-        if sta not in metars:
-            metars[sta] = {}
-            metars[sta][
-                'raw_text'] = "The station " + sta + " is currently unavailable.  Waiting on NWS data - try refreshing."
-        if sta not in tafs:
-            tafs[sta] = {}
-            tafs[sta][
-                'raw_text'] = "The station " + sta + " is currently unavailable.  Waiting on NWS data - try refreshing."
-
-    return render_template('brief.html', metars=metars, tafs=tafs, stations=stations)
-
-
-@app.route('/brief2')
-def brief2():
-    metars = get_metars()
-    tafs = get_tafs()
-
-    stations = ["PALP", "PAKU", "PASC", "PAQT", "PAAD", "PAKV", "PABR", "PABT"]
-
-    for sta in stations:
-        if sta not in metars:
-            metars[sta] = {}
-            metars[sta][
-                'raw_text'] = "The station " + sta + " is currently unavailable.  Waiting on NWS data - try refreshing."
-        if sta not in tafs:
-            tafs[sta] = {}
-            tafs[sta][
-                'raw_text'] = "The station " + sta + " is currently unavailable.  Waiting on NWS data - try refreshing."
-
-    return render_template('brief2.html', metars=metars, tafs=tafs, stations=stations)
-
+@app.route('/dice')
+def dice():
+    return render_template("dice.html")
 
 @app.route('/misc', defaults={'req_path': ''})
 @app.route('/misc/<path:req_path>')
