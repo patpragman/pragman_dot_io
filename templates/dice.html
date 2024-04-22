@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dice Roller</title>
+</head>
+<body>
+<label for="diceSelect">Choose a dice:</label>
+<select id="diceSelect">
+    <option value="4">d4</option>
+    <option value="6">d6</option>
+    <option value="8">d8</option>
+    <option value="10">d10</option>
+    <option value="12">d12</option>
+    <option value="20">d20</option>
+    <option value="100">d100</option>
+</select>
+<button onclick="rollDice()">Roll Dice</button>
+<p id="result"></p>
+<script src={{
+        url_for('static', filename='js/diceRoller.js') }}></script>
+</body>
+</html>

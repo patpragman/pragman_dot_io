@@ -1,0 +1,99 @@
+title:
+Flashcards for fellow students!
+
+date:
+2022/10/03
+
+content:
+<h3> Flashcards!</h3>
+Requirements should be ____.<br>	Testable.
+Scenario testing is part of ______ test?<br>	Release<br>
+How does scenario testing work?<br>	You write a story and explain in plain english how the test proceeds.<br>
+What is performance testing?<br>	Testing that's performed on completed integrated systems under predicted loads and then some.&nbsp; Stress testing.<br>
+User testing is ...<br>	Alpha testing (power users) and Beta Testing to get first feedback from users.<br>
+Acceptance testing is done when the _______ is done.<br>	Software.<br>
+Acceptance criteria should be established at the ______ of the project?<br>	The beginning of the project.&nbsp; (Definition of Done)<br>
+How important is software reuse?<br>	It's the most important tool in your quiver.<br>
+Testing should be ________ as much as possible.<br>	automated<br>
+What is a user story?<br>	<span>A user story is <em>a short, simple description of a feature told from the perspective of the person who desires the new capability</em></span>
+In order to find unexpected behavior you need to perform ________.<br>	system testing<br>
+Literally every single aspect of the project is subject to _____________.<br>	change<br>
+Is pair programming effective?<br>	This is debatable - research says yes, but it's debatable.<br>
+Define scrum:<br>	A daily meeting to discuss what you're doing, 15 min max.<br>
+Define velocity in the context of agile:<br>	Velocity is how much work can be accomplished with the team you're working with.<br>
+What is the role of the scrum master?<br>	"<span class=""ILfuVd"" lang=""en""><span class=""hgKElc"">The scrum master <b>helps to facilitate scrum to the larger team by ensuring the scrum framework is followed</b>. </span></span>"
+What is the maximum size for a dev team?<br>	7 people - anything more is too unwieldy.<br>
+What is a product owner?<br>	scrum.org says:&nbsp; Role in Scrum accountable for maximizing the value of a product,  primarily by incrementally managing and expressing business and  functional expectations for a product to the Developers.
+Give an example of a user requirement:<br>	A mobile app that identifies bird pictures via camera.<br>
+Give an example of some system requirements:<br>	ios app, written in swift, need to have SMEs on site, database, training model data, time constraints, data security. <br>
+There is always ____ to do than you have time or resources for.<br>	more
+what are the 3 simple truths?<br>	1.&nbsp; it's impossible to have all the requirements<br>2.&nbsp; whatever requirements you'll have will change<br>3.&nbsp; there's always more to do than time or money will allow<br>
+Programmers are ________ with a keyboard.<br>	customers
+The purpose of project managers and scrum leaders should be to _______ ________.<br>	remove roadblocks.<br>
+"What is a ""not list?""<br>"	It's a list of what your product is not.<br>
+The company being bought out is a risk you should / should not be worried about.<br>	should not.<br>
+Risk _______ as the project length increases.<br>	Risk increases as the project length increases.<br>
+What are the stages of the waterfall model?<br>	1.&nbsp; Requirements definition<br>2.&nbsp; System and software design<br>3.&nbsp; Implementation and Unit Testing<br>4.&nbsp; Integration and system testing<br>5.&nbsp; Operations and Maintenance<br><br>Req-Des-Test-Test-Operate<br>
+What does V&amp;V stand for?<br>	Verification and validation.&nbsp; This is the part of the software design process where you check to see that the system conforms to its specification and meets customer expectations.<br>
+What is component testing?<br>	The components making up a system are tested by the people developing the system.<br>
+What is system testing?<br>	System components are integrated to create a complete system<br>
+What is customer testing?<br>	This the final stage in the testing process before the system is accepted for operational use where the system is tested by the customer or potential customer.<br>
+Define WIP<br>	Work in progress<br>
+What does XP stand for?<br>	eXtreme programming (think the 90s where everything was eXtreme)<br>
+Who came up with agile at scale?<br>	IBM
+How does agile at scale work?<br>	It's just recursive agile where you break work down into it's component parts and make scrums for those projects - the scrum masters from each component part have scrum meetings together, etc.<br>
+What is collective ownership?<br>	Pairs of developers work on all areas of the system so that no islands of expertise develop and all the developers take responsibility for all of the code.&nbsp; Anyone can change anythin.<br>
+What is continuous integration?<br>	As soon as the work on a task is complete, it is integrated into the whole system.&nbsp; After any such integration all the unit tests in the system must pass.<br>
+What is an on-site customer?<br>	A representative of the end user of the system should be around full time for an XP team.<br>
+What is refactoring?<br>	Rewriting code as soon as an improvement is discovered.<br>
+"What is ""simple design?""<br>"	Enough design is carried out to meet the customer requirements and no more.<br>
+What is the small releases principle (XP)?<br>	The minimal useful set of functionality that provides business value is developed first.&nbsp; Releases of the system are frequent and incrementally add functionality to the first release.<br>
+"What is ""test first development?""<br>"	An automated unit testing framework where you write tests for code before you write the code.<br>
+What is potentially shippable product increment?<br>	The software increment that is delivered from a sprint.<br>
+What is the product backlog?<br>	"This is a list of ""to do"" items that the scrum team must tackle.<br>"
+What is a sprint?<br>	A development iteration.&nbsp; Sprints are usually 2 to 4 weeks long.<br>
+What is a functional requirement?<br>	these are statements of services the system should provide, how the system should react to particular inputs, and how the system should behave in particular situations.<br>
+What are non-functional requirements?<br>	These are contraints on the services or functions offered by the system.&nbsp; - These often apply to the system as a whole rather than individual system components.<br>
+Is an ethical or operational requirement a functional requirement or a non-functional requirement?<br>	Non functional.<br>
+What is a closed interview?<br>	One where the stakeholder answers a predefined set of questions.<br>
+What is an open interview?<br>	One where there are no predefined agenda points.<br>
+What is ethnography in the context of software development?<br>	"Ethnography is an observational technique that can be used to to understand operational processes and help derive requirements for software to support these processes.<br><br>Think ""field ethnography"" from an anthropology class.<br>"
+What are the 3 principal stages to a change management process?<br>	1.&nbsp; Problem analysis and change specification<br>2.&nbsp; Change analysis and costing.<br>3.&nbsp; Change implementation.<br>
+"""Testing can only show the _______ of errors not their absence.""<br>"	presence
+"define ""validation"" in the form of a question.<br>"	"""are we building the right product?""<br>"
+define verification in the form of a question<br>	"""Are we building the product right?""<br>"
+What is the difference between development testing and release testing?<br>	Where development testing is done during development, typically by the programmers and system designers, release testing is performed by a separate testing team and is done on the completed version.<br>
+What is a unit test and what is unit testing?<br>	Unit testing is the process of testing program components such as methods or object classes - the tests written for each one is a unit test.<br>
+Testing is ____ and ____.<br>	testing is expensive and time consuming.<br>
+Unit tests should show ...<br>	Unit tests should show that when used as expected the component that you are testing does what it is supposed to do.<br>
+If there are defects in a component, ____ should reveal them.<br>	the tests cases (unit tests)<br>
+What is partition testing?<br>	Where you identify groups of inputs that have common characteristics and should be processed in the same way.&nbsp; You should choose tests from within each of these groups.<br>
+What is guideline-based testing?<br>	Where you use testing guidelines to choose test cases.&nbsp; These guidelines reflect previous experience of the kinds of errors that programmers often make when developing components.<br>
+_______ errors are one of the most common forms of error in complex systems.<br>	Interface<br>
+How does test driven development work?<br>	<div>0.&nbsp; identify a new feature you want to add<br>1.&nbsp; you write the test for it<br></div><div>2.&nbsp; run the test<br>if pass go back to 0 otherwise:<br>3.&nbsp; write just enough code to try to get it to work<br>return to 2<br></div>
+How does test driven development work?<br>	<div>0.&nbsp; identify a new feature you want to add<br>1.&nbsp; you write the test for it<br></div><div>2.&nbsp; run the test<br>if pass go back to 0 otherwise:<br>3.&nbsp; write just enough code to try to get it to work<br>return to 2<br></div>
+What is regression testing?<br>	running test sets that have successfully executed after changes have been made to a system to see if the changes introduced new bugs.<br>
+What is alpha testing?<br>	Where a selected group of software users work closely with the dev team to test early releases.<br>
+What is beta testing?<br>	Where a release of the software is made available to a larger group of users to allow them to experiment and raise problems that they discovered with the system devs.<br>
+What is acceptance testing?<br>	where customers test a system to decide whether or not it is ready to be accepted from the system devs and deployed in the customer environment.<br>
+Chapter 8 Key Point:<br><br>testing can only show the ________ of errors in a program.&nbsp; It _____ show that there are no remaining _____.<br>	testing can only show the presence of errors in a program.&nbsp; It cannot show that there are no remaining faults.
+Chapter 8 Key Point:<br><br><br>Development testing is the responsibility of the _____ _____ _____.<br>	softwrae development team<br>
+"<div>Chapter 8 Key Point:</div><div><br></div><div>When testing software you should try to ""______"" the software by using experience and guidelines to choose types of tests that have been previously shown to be effective.<br></div>"	break
+Chapter 8 Key Point:<br><br>Where every possible you should write _________ tests.<br>	automated
+Chapter 8 Key Point:<br><br>Test-first development is an approach to development whereby tests are written ___________ the code to be tested.<br>	before
+Chapter 8 Key Point:<br><br><br>________ testing is useful because it replicates the practical use of the sytem.<br>	Scenario<br>
+<div>Chapter 8 Key Point:</div><div><br></div><div>_______ testing is a user testing process in which the ain is to decide if the software is good enough to be deployed and used in it's planned operational environment.<br></div>	Acceptance<br>
+Chapter 4 Key Point:<br><br>________ for a software system set out what the system should do and define constraints on it's operation and implementation.<br>	Requirements
+<div>Chapter 4 Key Point:</div><div><br></div><div>_________ requirements are statements of the services that the system must provide or descriptiosn of how some computations must be carried out.<br></div>	Functional
+Chapter 4 Key Point:<br><br>___ - _______ requirements often constrain the system being developed and the development process being used.&nbsp; These might be product requirements, orgainizational requirements, or external requirements.<br>	Non - functional<br>
+<div>Chapter 4 Key Point:</div><div><br></div><div>The requirements engineering process includes requirements ______, requirements ______, requirements _______ validation,&nbsp; and requirements _______ .<br></div>	elicitation, specification, validation, management.<br>
+<div>Chapter 4 Key Point:</div><div><br></div>Requirements _______ is an iterative process that can be represented as a spiral of activities-requirements discovery, requirements classification and organization, requirements negotiation, and requirements documentation.<br>	elicitation
+<div>Chapter 4 Key Point:</div><div><br></div><div>Requirements specifications is the process of formally ______ the user and system requirements and creating a software requirements _______.<br></div>	documenting, document<br>
+<div>Chapter 4 Key Point:</div><div><br></div><div>requirements _________ is the process of checking the requirements for validity, consistency, completeness, realism, and verifiability.<br></div>	validation
+<div>Chapter 3 Key Point:</div><div><br></div><div>Agile methods are ___&nbsp; development methods that focus on reducing process overhads, and documentation and on incremental software delivery.<br></div>	iterative
+Chapter 3 Key Point:<br><br>The decision on whether to use an agile or plan driven approach to development should depend on the _____ of software developed, the capabilities of the development team, and the culture of the company developing the system.<br>	type
+Chapter 3 Key Point:<br><br>Agile development practices include requirements expressed as _____ stories, pair _______, refactoring, continuous integration, and ____-first development.<br>	user, programming, test<br>
+<div>Chapter 3 Key Point:</div><div><br></div><div>Scrum is an _____ method that provides a framework for organizing agile projects.<br></div>	agile
+<div>Chapter 3 Key Point:</div><div><br></div><div>To scale agile methods, some _____-______ practices have to be integrated with agile practice.<br></div>	plan-based<br>
+
+here ya go guys!

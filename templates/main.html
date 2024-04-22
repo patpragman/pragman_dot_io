@@ -218,7 +218,6 @@
           <li><a href="#resume">Resume</a></li>
           <li><a href="#projects">Portfolio</a></li>
           <li><a href="/misc">Misc</a> </li>
-          <li><a href="/blog">Blog</a> </li>
 
       </ul>
     </div>
@@ -236,11 +235,11 @@
     <div class="col">
       <h2>About Me</h2><br>
       <img src="{{url_for('static', filename='me.jpeg')}}" style="width:65%">
-      <p class="body_text" >I'm a husband, father, lifelong learner, and adventurer.  I was a professional pilot for over a decade.  I like solving hard problems with cool people and challenging the status quo.  I've been a student my whole life, but formally, I have a BS in Aviation and a BS in math.</p>
+      <p class="body_text" >I'm a husband, father, lifelong learner, and adventurer.  I was a professional pilot for over a decade.  I like solving hard problems with cool people and challenging the status quo.  I've been a student my whole life, but formally, I have a BS in Aviation, a BS in math, and am currently completing a Masters of Science in Computer Vision.</p>
 
-      <p class="body_text">I am conversational in Russian and can get by in Spanish.  My French can order a beer or get a room for the night, but that's about it.  I like learning languages and enjoy immersion in different cultures.</p>
+      <p class="body_text">My native language is English, but I am conversational in Spanish and to a lessor degree Russian.  My French can order a beer or get a room for the night.  I like learning languages and enjoy immersion in different cultures.</p>
 
-      <p class="body_text">In 2018, I backpacked solo across Spain after being out of work due to illness.  I hope to do it again one day - maybe with the whole family.</p>
+      <p class="body_text">In 2018, I backpacked solo across Spain after being out of work due to illness.  I did it again in the summer of 2023.  I enjoy long-distance backpacking and exploring the natural world.</p>
 
     </div>
 
@@ -255,7 +254,7 @@
     <div class="col">
       <h2>Resume</h2><br>
       <img src="{{url_for('static', filename='inflight.jpg')}}" style="width:65%">
-      <p class="body_text">The quick synopsis is that I'm a college educated, ATP rated pilot, with over 7000hrs of accident, incident, and violation free flight hours, mostly in Alaska.  I can write manuals, develop training programs, program Python, and more.  I know how to work with regulators and have gotten manuals approved.  I've been a check airman, company instructor, and line pilot in a wide array of 135 operations.  I enjoy designing and applying technological solutions to small airline operations.</p>
+      <p class="body_text">The quick synopsis is that I'm a college educated, ATP rated pilot, with well over 7000hrs of accident, incident, and violation free flight hours, mostly in Alaska.  I can write manuals, develop training programs, program Python, and more.  I know how to work with regulators and have gotten manuals approved.  I've been a check airman, company instructor, and line pilot in a wide array of 135 operations however, I can no longer fly as I can not hold a medical.  I enjoy designing and applying technological solutions to small airline operations.</p>
 
       <p class="body_text" >Here's a <a href="https://docs.google.com/document/d/1aVhPFsyncbSXIfT7lq4E7l2dtaTM0LmSNbgNMcFuPyI/edit?usp=sharing">link</a> to my last resume.  I'm currently looking for opportunities in the development space.  I do consulting work if necessary, <a href="mailto:pat@pragman.io">contact me by email</a> with any questions or give me a call at <a href="tel: +19077825400">+1 (907) 782-5400</a>.</p>
 
@@ -280,8 +279,22 @@
 
       <h3>Simple Inventory</h3>
       <p class="body_text">I've worked at a few places that didn't have much of an inventory control process for their air freight.  We mostly just put stuff in the warehouse then manually went around looking for it when it was time to fly.  I decided to try my hand at a solution to that.  I created a simple web app with that can manage an inventory.  You can check stuff in, check stuff out, and create new customers and users.  It creates labels that have a QR code that load them into a cart.  It uses Python for the back end (with flask, like this site), SQLite for the database, and a little HTML and Javascript to add functionality.  Check it out <a href="https://ciegoservices.pythonanywhere.com">here.</a></p>
+
         <h3>Nearly Continuous Integration</h3>
         <p class="body_text">I have been recently reading quite a bit about CI/CD processes.  I'm self-educating on the basics of devops.  As part of that process, I have created a pipeline that makes it easier to push code to this site.  The project lives on Github, and a script runs on python anywhere that looks for updates to the git hub repo.  If there are updates, the test environment <a href="http://test.pragman.io">test.python.io</a> gets updated, then deploying to production just requires running a "reload.sh" script.  It's not exactly what you'd see in industry (I just have a test and a production app) but for a simple page, it's "good enough."</p>
+
+        <h3>Graduate School!</h3>
+        <p class="body_text">Since the Fall of 2022, I've been in Graduate School studying Computer Vision at the University of Alaska Anchorage.  I've been building a lot of fun machine learning tools, and working on my thesis.  If you're interested in the content, send me an email, but ultimately, I'm using ResNet-18 to detect aquatic vegetation on floatplane water rudders.  Expect to see more projects added here, as well as my thesis when I have time to post them.</p>
+
+
+        <h3>Flashcard McFlashcardy</h3>
+        <p class="body_text">In my first semester of graduate school, I managed a team of undergrads to build a <a href="https://patpragman.github.io/swe_class_project/">simple flashcard</a> web application for our software engineering course.  I wrote the backend using Python, and AWS.  I cannot take credit for the absolutely beautiful front end - that goes to <a href="https://github.com/JaaliyahA">Jaaliyah</a> and <a href="https://github.com/borogchingua">Boro</a>, hire them immediately.</p>
+
+
+        <h3>Pat Tracker</h3>
+        <p class="body_text">As a somewhat tangential side project to my graduate research, I've used a Raspberry Pi Pico to build a tool to send data over cell.  In the long run, I hope to build a tool that can track the spread of the invasive species I'm concerned with in my research.  Beyond that I think I could leverage this into an open source asset tracking tool.  The code on the micro computer is in Python, and the website uses JavaScript (thanks leaflet.js).  The code is available on github <a href="https://github.com/patpragman/patmap">here</a>, the website is hosted live and working, let me know if you want access, I can't afford 2m hits a day quite yet.</p>
+        <img src="{{url_for('static', filename='mapui.png')}}" style="width:65%">
+
 
     </div>
 

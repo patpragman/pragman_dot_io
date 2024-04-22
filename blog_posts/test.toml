@@ -1,9 +1,0 @@
-title = "Test of TOML Lib and post render"
-date = "2022/08/31"
-content = '''Post content goes in here...
-
-interesting how it just works like a python comment.  I like that.
-
-Also, a link!
-<a href="https://www.pragman.io">see!</a>
-'''
