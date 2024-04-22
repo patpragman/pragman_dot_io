@@ -22,6 +22,10 @@ app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 def index():
     return render_template('main.html')
 
+@app.route('/beer')
+def beer():
+    return render_template("invite.html")
+
 
 @app.route('/wxwatch')
 def wxwatch():
