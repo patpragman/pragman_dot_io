@@ -32,6 +32,10 @@ def proposal():
     path = f"{os.getcwd()}/static/proposal.pdf"
     return send_file(path, as_attachment=True)
 
+@app.route('/lake_map')
+def lake_map():
+    return render_template('lake_map.html')
+
 @app.route('/download_bib')
 def download_bib():
     path = f"{os.getcwd()}/static/quickbib.pdf"
