@@ -45,9 +45,16 @@ def download_bib():
     path = f"{os.getcwd()}/static/quickbib.pdf"
     return send_file(path, as_attachment=True)
 
-@app.route('/entanglement')
-def retrieve_entangled_data():
-    return render_template("entanglement_map.html")
+
+@app.route('/maps', defaults={'req_path': ''})
+@app.route('/maps/<path:req_path>')
+def retrieve_entangled_data(req_path):
+    map_files = os.listdir(f"{app.template_folder}/maps")
+
+    if req_path in map_files:
+        return render_template(f"maps/{req_path}")
+    else:
+        return render_template('misc.html', files=map_files)
 
 @app.route('/dice')
 def dice():
