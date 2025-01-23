@@ -325,31 +325,41 @@ Our work is driven by curiosity and optimism. Every prototype is a bold experime
 <div id="contact" class="container-fluid bg-grey">
   <div class="row text-center">
     <h2>Get Involved / Contact Us</h2>
-    <p class="body_text">
-      Want to learn more? Interested in collaborating or bringing our solutions to your community?
-      Please feel free to reach out. We love connecting with like-minded people and organizations.
-    </p>
+<p class="body_text">
+  Want to learn more? Interested in collaborating or bringing our solutions to your community?
+  Please feel free to reach out. We love connecting with like-minded people and organizations.
+</p>
 
-    <!-- Uncomment the form below when ready to implement signups/inquiries -->
-    <!--
-    <div class="col-md-6 col-md-offset-3">
-      <form>
-        <div class="form-group">
-          <label for="name">Your Name:</label>
-          <input type="text" class="form-control" id="name" placeholder="Enter name">
-        </div>
-        <div class="form-group">
-          <label for="email">Your Email:</label>
-          <input type="email" class="form-control" id="email" placeholder="Enter email">
-        </div>
-        <div class="form-group">
-          <label for="message">Your Message:</label>
-          <textarea class="form-control" rows="4" id="message" placeholder="Your message here"></textarea>
-        </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-      </form>
+  <div class="col-md-6 col-md-offset-3" id="contact-section">
+  <!-- Display flash messages if available -->
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div id="flash-message" class="alert alert-{{ messages[0][0] }}">
+        {{ messages[0][1] }}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <!-- Show the form only if no flash messages exist -->
+  {% if not get_flashed_messages() %}
+    <form method="POST" action="/contact" id="contact-form">
+      <div class="form-group">
+        <label for="name">Your Name:</label>
+        <input type="text" name="name" class="form-control" id="name" placeholder="Enter name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Your Email:</label>
+        <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" required>
+      </div>
+      <div class="form-group">
+        <label for="message">Your Message:</label>
+        <textarea class="form-control" rows="4" name="message" id="message" placeholder="Your message here" required></textarea>
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+  {% endif %}
     </div>
-    -->
+
   </div>
 </div>
 
@@ -360,6 +370,23 @@ Our work is driven by curiosity and optimism. Every prototype is a bold experime
   </a>
   <p>Bootstrap Theme Inspiration By <a href="https://www.w3schools.com" title="Visit w3schools">www.w3schools.com</a></p>
 </footer>
+
+<!-- Add JavaScript to scroll to the flash message and auto-hide it -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Check if the flash message exists
+    const flashMessage = document.getElementById("flash-message");
+    if (flashMessage) {
+      // Smoothly scroll to the flash message
+      flashMessage.scrollIntoView({ behavior: "smooth", block: "start" });
+
+      // Optional: Auto-hide the flash message after 5 seconds
+      setTimeout(() => {
+        flashMessage.style.display = "none";
+      }, 5000);
+    }
+  });
+</script>
 
 <!-- Smooth Scrolling + Slide Animations -->
 <script>
