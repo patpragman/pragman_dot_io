@@ -1,17 +1,7 @@
-# Digital Resume!
-# Patrick Pragman
-# Ciego Services
-# 16APRIL2022
-# Flask App to watch for changes in the weather
+# Main flask app for Pragman Family Farms!
 
 import os
-import toml
 from flask import Flask, render_template, request, jsonify, abort, send_file
-from metar import Metar
-from get_metar import get_metar
-from wxdata import get_metars, get_tafs
-from local_config import Path
-from datetime import datetime
 from flask import send_file
 
 app = Flask(__name__)
@@ -23,17 +13,16 @@ def index():
     return render_template('main.html')
 
 
-
-
-
 @app.route('/download_bib')
 def download_bib():
+    # legacy code from my thesis
     path = f"{os.getcwd()}/static/quickbib.pdf"
     return send_file(path, as_attachment=True)
 
 
 @app.route('/dice')
 def dice():
+    # dice rolling tool for my kids since they cannot get along
     return render_template("dice.html")
 
 
