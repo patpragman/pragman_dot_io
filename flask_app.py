@@ -145,9 +145,6 @@ def create_checkout_session():
             'quantity': quantity,
         })
 
-    # Capture the customer's email, either from a form field or session
-    #email = session.get('customer_email', 'test@example.com')
-
     try:
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
