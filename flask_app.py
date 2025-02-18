@@ -148,7 +148,6 @@ def create_checkout_session():
     try:
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
-            #customer_email=email,
             line_items=line_items,
             mode='payment',
             # Collect shipping address from allowed countries
