@@ -14,11 +14,14 @@ stripe.api_key = os.environ.get("STRIPE_SECRET_KEY")
 # product definition
 PRODUCTS = {
     "complete_kit": {"name": "Complete Hydroponics Kit", "price": 200,
-                     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel lorem eget libero tincidunt tincidunt."},
+                     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel lorem eget "
+                                    "libero tincidunt tincidunt."},
     "module_component": {"name": "Module Component", "price": 10,
-                         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel lorem eget libero tincidunt tincidunt."},
+                         "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel lorem "
+                                        "eget libero tincidunt tincidunt."},
     "base_component": {"name": "Base Component", "price": 10,
-                       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel lorem eget libero tincidunt tincidunt."},
+                       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel lorem "
+                                      "eget libero tincidunt tincidunt."},
     "bucket_stiffener": {"name": "Bucket Stiffener", "price": 10,
                          "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel lorem eget libero tincidunt tincidunt."},
     "cap_components": {"name": "Cap Components", "price": 10,
@@ -27,6 +30,11 @@ PRODUCTS = {
              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel lorem eget libero tincidunt tincidunt."},
     "grow_basket": {"name": "Grow Basket", "price": 1,
                     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent vel lorem eget libero tincidunt tincidunt."},
+
+    "time":  {"name": "An hour of Pat's Time", "price":50,
+              "description": "An hour to troubleshoot, help you plan out your hydroponics goals, any sort of AI work, or whatever.  If there's beer involved, the "
+                             "meeting is free, but don't schedule that here."
+              },
 }
 
 def initialize_cart():
