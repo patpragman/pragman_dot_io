@@ -121,11 +121,12 @@
   </div>
 
   <script>
-    // Initialize Stripe.js with your publishable key
+    // Initialize Stripe.js with the publishable key provided by the Flask app
     var stripe = Stripe("{{ publishable_key }}");
     var checkoutButton = document.getElementById("checkout-button");
     if (checkoutButton) {
       checkoutButton.addEventListener("click", function () {
+        // Create a new Checkout Session using the server endpoint
         fetch("/create-checkout-session", {
           method: "POST",
           headers: {
@@ -136,6 +137,7 @@
           return response.json();
         })
         .then(function (session) {
+          // Redirect the customer to Stripe Checkout
           return stripe.redirectToCheckout({ sessionId: session.id });
         })
         .then(function (result) {

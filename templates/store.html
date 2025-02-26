@@ -162,7 +162,8 @@
       <div class="row" style="margin-bottom:20px;">
         <div class="col-sm-12">
           <div class="thumbnail">
-            <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}">
+            <!-- Use the product image if available, otherwise a placeholder -->
+            <img src="{{ url_for('static', filename=product.image) if product.image else url_for('static', filename='default.png') }}" alt="{{ product.name }}">
             <div class="caption">
               <h4>{{ product.name }}</h4>
               <p><strong>${{ "%.2f"|format(product.price) }}</strong></p>
@@ -181,8 +182,9 @@
                   <label for="quantity-{{ loop.index }}">Quantity:</label>
                   <input type="number" name="quantity" id="quantity-{{ loop.index }}" class="form-control" value="1" min="1" style="width:60px; margin-left:5px;">
                 </div>
+                <!-- Hidden fields: product_id holds the product name for display, price_id holds the Stripe price ID -->
                 <input type="hidden" name="product_id" value="{{ product.name }}">
-                <input type="hidden" name="id" value="{{ product.id }}">
+                <input type="hidden" name="price_id" value="{{ product.price_id }}">
                 <input type="hidden" name="price" value="{{ product.price }}">
                 <button type="submit" class="btn btn-custom">Add to Cart</button>
               </form>

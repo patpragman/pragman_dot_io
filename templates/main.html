@@ -1,421 +1,118 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <!-- Template updated for Pragman Family Farms -->
-  <title>Pragman Family Farms</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends "base.html" %}
 
-  <!-- Bootstrap CSS & Google Fonts -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+{% block title %}Pragman Family Farms - Home{% endblock %}
 
-  <!-- jQuery and Bootstrap JS -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-  <style>
-    body {
-      font: 400 15px Lato, sans-serif;
-      line-height: 1.8;
-      color: #818181;
-    }
-    h2 {
-      font-size: 24px;
-      text-transform: uppercase;
-      color: #343132;
-      font-weight: 600;
-      margin-bottom: 30px;
-    }
-    h4 {
-      font-size: 19px;
-      line-height: 1.375em;
-      color: #343132;
-      font-weight: 400;
-      margin-bottom: 30px;
-    }
-    .jumbotron {
-      background-color: #343132; /* Main brand color */
-      color: #fff;
-      padding: 100px 25px;
-      font-family: Montserrat, sans-serif;
-      background-image: url("{{ url_for('static', filename='herobanner.png') }}");
-      background-size: cover;
-      background-position: center;
-    }
-    .body_text {
-      text-align: justify;
-      text-justify: inter-word;
-      width: 65%;
-      margin: 0 auto; /* center the text block */
-    }
-    .container-fluid {
-      padding: 60px 50px;
-    }
-    .bg-grey {
-      background-color: #f6f6f6;
-    }
-    .logo-small {
-      color: #343132;
-      font-size: 50px;
-    }
-    .logo {
-      color: #343132;
-      font-size: 200px;
-    }
-    .thumbnail {
-      padding: 0 0 15px 0;
-      border: none;
-      border-radius: 0;
-    }
-    /* Make images uniform with a fixed height and cover any overflow */
-    .thumbnail img {
-      width: 100%;
-      height: 200px; /* adjust as needed */
-      object-fit: cover;
-      margin-bottom: 10px;
-    }
-    .carousel-control.right,
-    .carousel-control.left {
-      background-image: none;
-      color: #343132;
-    }
-    .carousel-indicators li {
-      border-color: #343132;
-    }
-    .carousel-indicators li.active {
-      background-color: #343132;
-    }
-    .item h4 {
-      font-size: 19px;
-      line-height: 1.375em;
-      font-weight: 400;
-      font-style: italic;
-      margin: 70px 0;
-    }
-    .item span {
-      font-style: normal;
-    }
-    .panel {
-      border: 1px solid #122340;
-      border-radius: 0 !important;
-      transition: box-shadow 0.5s;
-    }
-    .panel:hover {
-      box-shadow: 5px 0px 40px rgba(0, 0, 0, 0.2);
-    }
-    .panel-heading {
-      color: #fff !important;
-      background-color: #122340 !important;
-      padding: 25px;
-      border-bottom: 1px solid transparent;
-      border-top-left-radius: 0px;
-      border-top-right-radius: 0px;
-      border-bottom-left-radius: 0px;
-      border-bottom-right-radius: 0px;
-    }
-    .panel-footer {
-      background-color: white !important;
-    }
-    .panel-footer .btn:hover {
-      border: 1px solid #122340;
-      background-color: #fff !important;
-      color: #122340;
-    }
-    .panel-footer .btn {
-      margin: 15px 0;
-      background-color: #122340;
-      color: #fff;
-    }
-    .navbar {
-      margin-bottom: 0;
-      background-color: #343132;
-      z-index: 9999;
-      border: 0;
-      font-size: 12px !important;
-      line-height: 1.42857143 !important;
-      letter-spacing: 4px;
-      border-radius: 0;
-      font-family: Montserrat, sans-serif;
-    }
-    .navbar li a,
-    .navbar .navbar-brand {
-      color: #fff !important;
-    }
-    .navbar-nav li a:hover,
-    .navbar-nav li.active a {
-      color: #343132 !important;
-      background-color: #fff !important;
-    }
-    .navbar-default .navbar-toggle {
-      border-color: transparent;
-      color: #fff !important;
-    }
-    footer .glyphicon {
-      font-size: 20px;
-      margin-bottom: 20px;
-      color: #343132;
-    }
-    .slideanim {
-      visibility: hidden;
-    }
-    .slide {
-      animation-name: slide;
-      -webkit-animation-name: slide;
-      animation-duration: 1s;
-      -webkit-animation-duration: 1s;
-      visibility: visible;
-    }
-    @keyframes slide {
-      0% {
-        opacity: 0;
-        transform: translateY(70%);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0%);
-      }
-    }
-    @-webkit-keyframes slide {
-      0% {
-        opacity: 0;
-        -webkit-transform: translateY(70%);
-      }
-      100% {
-        opacity: 1;
-        -webkit-transform: translateY(0%);
-      }
-    }
-    @media screen and (max-width: 768px) {
-      .col-sm-4 {
-        text-align: center;
-        margin: 25px 0;
-      }
-      .btn-lg {
-        width: 100%;
-        margin-bottom: 35px;
-      }
-      .body_text {
-        width: 90%;
-      }
-    }
-    @media screen and (max-width: 480px) {
-      .logo {
-        font-size: 150px;
-      }
-    }
-  </style>
-</head>
-
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
-
-<!-- NAVBAR -->
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <!-- Collapsed menu button -->
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <!-- Placeholder LOGO (coming soon) -->
-      <a class="navbar-brand" href="#myPage"><img src="{{ url_for('static', filename='logo3.png') }}" alt="Pragman Family Farms Logo" style="height: 30px;"></a>
-    </div>
-    <div class="collapse navbar-collapse" id="myNavbar">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="#main">HOME</a></li>
-        <li><a href="#vision">OUR VISION</a></li>
-        <li><a href="#technology">TECHNOLOGY</a></li>
-        <li><a href="#about">ABOUT</a></li>
-        <li><a href="/store">STORE</a></li>
-        <li><a href="#contact">CONTACT</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<!-- MAIN JUMBOTRON -->
-<div id="main" class="jumbotron text-center" style="color: #343132">
-  <h1 style="font: bold">Pragman<br>Family<br>Farms</h1>
-  <!-- <p style="font-style: oblique">Locally grown, high-tech</p> I think I want to get rid of the subtext-->
-</div>
-
-<!-- OUR VISION SECTION -->
-<div id="vision" class="container-fluid">
-  <div class="row text-center">
-    <h2>Our Vision</h2>
-    <p class="body_text">
-At Pragman Family Farms, we envision a future where communities not only survive but thrive, rooted in the principles of radical self-sufficiency and inspired by the bold creativity of solar-punk ideals. We believe that everyone deserves access to fresh, nutritious food, no matter where they live—whether in the heart of Alaska or the most remote corners of the globe. Our mission is to empower individuals and communities to achieve food independence by leveraging advanced technology, sustainable practices, and a relentless spirit of innovation.
-<br><br>
-
-This vision fuels our determination to make high-tech agriculture approachable and affordable for all. From our garage in Alaska, we are proving that even the harshest environments are no match for ingenuity and a commitment to progress. We see every challenge as an opportunity to refine our methods, and every harvest as a testament to the incredible potential of human creativity and collaboration. At Pragman Family Farms, we’re not just growing food—we’re cultivating a movement toward resilience, abundance, and hope.
-    </p>
-  </div>
-</div>
-
-<!-- TECHNOLOGY SECTION -->
-<div id="technology" class="container-fluid bg-grey">
-  <div class="row text-center">
-    <h2>Technology & Innovation</h2>
-    <p class="body_text">
-Innovation is the cornerstone of Pragman Family Farms, and our technology represents a marriage of creativity, accessibility, and purpose. Using Bambu Lab X1C 3D printers, we modify open-source hardware, designing and prototyping advanced hydroponic systems tailored to the unique challenges of Alaskan agriculture. Our commitment to open-source principles allows us to draw inspiration from the global maker community while contributing back with our own innovations.
-<br><br>
-
-In particular, we’re starting with an amazing open-source tower design from <a href="https://makerworld.com/en/models/214665#profileId-509086" target="_blank">this model</a>, released under the <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons BY</a> license, and are modifying it to thrive in Alaska’s extreme conditions. Each custom grow basket, modular farm component, and sustainable energy solution we develop brings us closer to a world where anyone can produce food, no matter their circumstances.
-<br><br>
-
-Our systems are designed not just for functionality but for scalability and adaptability. Whether it’s a single tower for a family home or an integrated solution for an entire community, our hydroponic setups prioritize minimal waste, energy efficiency, and reliability. Through an iterative design approach, we continuously refine every aspect of our hydroponic towers for maximum efficiency, durability, and user-friendliness. By pushing the boundaries of what’s possible in challenging environments, we believe we can transform the way the world grows food and ensure that technology remains a force for good.
-    </p>
+{% block content %}
+  <!-- MAIN JUMBOTRON -->
+  <div id="main" class="jumbotron text-center" style="color: #343132; background-image: url('{{ url_for('static', filename='herobanner.png') }}');">
+    <h1 style="font: bold">Pragman<br>Family<br>Farms</h1>
+    <!-- Optional subtext removed as per your comment -->
   </div>
 
-  <!-- IMAGE GALLERY OF OUR TOWER AND PROCESS -->
-  <div class="row text-center" style="margin-top: 30px;">
-    <div class="col-sm-3">
-      <div class="thumbnail">
-        <!-- Replace 'sprout.png' with your actual file name -->
-        <img src="{{ url_for('static', filename='sprout.png') }}" alt="A single sprout in our system">
-        <p><strong>A Single Sprout</strong></p>
-        <p>The humble beginning of a new harvest.</p>
-      </div>
+  <!-- OUR VISION SECTION -->
+  <div id="vision" class="container-fluid">
+    <div class="row text-center">
+      <h2>Our Vision</h2>
+      <p class="body_text">
+        At Pragman Family Farms, we envision a future where communities not only survive but thrive, rooted in the principles of radical self-sufficiency and inspired by the bold creativity of solar-punk ideals. We believe that everyone deserves access to fresh, nutritious food, no matter where they live—whether in the heart of Alaska or the most remote corners of the globe. Our mission is to empower individuals and communities to achieve food independence by leveraging advanced technology, sustainable practices, and a relentless spirit of innovation.
+        <br><br>
+        This vision fuels our determination to make high-tech agriculture approachable and affordable for all. From our garage in Alaska, we are proving that even the harshest environments are no match for ingenuity and a commitment to progress. We see every challenge as an opportunity to refine our methods, and every harvest as a testament to the incredible potential of human creativity and collaboration. At Pragman Family Farms, we’re not just growing food—we’re cultivating a movement toward resilience, abundance, and hope.
+      </p>
+    </div>
+  </div>
+
+  <!-- TECHNOLOGY SECTION -->
+  <div id="technology" class="container-fluid bg-grey">
+    <div class="row text-center">
+      <h2>Technology & Innovation</h2>
+      <p class="body_text">
+        Innovation is the cornerstone of Pragman Family Farms, and our technology represents a marriage of creativity, accessibility, and purpose. Using Bambu Lab X1C 3D printers, we modify open-source hardware, designing and prototyping advanced hydroponic systems tailored to the unique challenges of Alaskan agriculture. Our commitment to open-source principles allows us to draw inspiration from the global maker community while contributing back with our own innovations.
+        <br><br>
+        In particular, we’re starting with an amazing open-source tower design from <a href="https://makerworld.com/en/models/214665#profileId-509086" target="_blank">this model</a>, released under the <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons BY</a> license, and are modifying it to thrive in Alaska’s extreme conditions. Each custom grow basket, modular farm component, and sustainable energy solution we develop brings us closer to a world where anyone can produce food, no matter their circumstances.
+        <br><br>
+        Our systems are designed not just for functionality but for scalability and adaptability. Whether it’s a single tower for a family home or an integrated solution for an entire community, our hydroponic setups prioritize minimal waste, energy efficiency, and reliability. Through an iterative design approach, we continuously refine every aspect of our hydroponic towers for maximum efficiency, durability, and user-friendliness. By pushing the boundaries of what’s possible in challenging environments, we believe we can transform the way the world grows food and ensure that technology remains a force for good.
+      </p>
     </div>
 
-    <div class="col-sm-3">
-      <div class="thumbnail">
-        <!-- Replace 'prototype_buckets.png' with your actual file name -->
-        <img src="{{ url_for('static', filename='prototype_buckets.png') }}" alt="Prototype buckets">
-        <p><strong>Prototype Buckets</strong></p>
-        <p>Our early modular experiments for tower stability.</p>
+    <!-- IMAGE GALLERY -->
+    <div class="row text-center" style="margin-top: 30px;">
+      <div class="col-sm-3">
+        <div class="thumbnail">
+          <img src="{{ url_for('static', filename='sprout.png') }}" alt="A single sprout in our system">
+          <p><strong>A Single Sprout</strong></p>
+          <p>The humble beginning of a new harvest.</p>
+        </div>
       </div>
-    </div>
-
-    <div class="col-sm-3">
-      <div class="thumbnail">
-        <!-- Replace '3d_printer_mid_print.png' with your actual file name -->
-        <img src="{{ url_for('static', filename='3d_printer_mid_print.png') }}" alt="3D printer mid-print">
-        <p><strong>3D Printer in Action</strong></p>
-        <p>The Bambu Lab X1C bringing our designs to life.</p>
+      <div class="col-sm-3">
+        <div class="thumbnail">
+          <img src="{{ url_for('static', filename='prototype_buckets.png') }}" alt="Prototype buckets">
+          <p><strong>Prototype Buckets</strong></p>
+          <p>Our early modular experiments for tower stability.</p>
+        </div>
       </div>
-    </div>
-
-    <div class="col-sm-3">
-      <div class="thumbnail">
-        <!-- Replace 'custom_bucket_stiffening_tool.png' with your actual file name -->
-        <img src="{{ url_for('static', filename='custom_bucket_stiffening_tool.png') }}" alt="Custom bucket stiffening tool">
-        <p><strong>Bucket Stiffening Tool</strong></p>
-        <p>Designed with ChatGPT in OpenSCAD to reinforce structural integrity.</p>
+      <div class="col-sm-3">
+        <div class="thumbnail">
+          <img src="{{ url_for('static', filename='3d_printer_mid_print.png') }}" alt="3D printer mid-print">
+          <p><strong>3D Printer in Action</strong></p>
+          <p>The Bambu Lab X1C bringing our designs to life.</p>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <div class="thumbnail">
+          <img src="{{ url_for('static', filename='custom_bucket_stiffening_tool.png') }}" alt="Custom bucket stiffening tool">
+          <p><strong>Bucket Stiffening Tool</strong></p>
+          <p>Designed with ChatGPT in OpenSCAD to reinforce structural integrity.</p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- ABOUT SECTION -->
-<div id="about" class="container-fluid">
-  <div class="row text-center">
-    <h2>About Us</h2>
-    <p class="body_text">
-Pragman Family Farms is more than a business—it’s a calling to reimagine what is possible. Our journey began in a small Alaskan garage, sparked by a passion for problem-solving and a desire to address food insecurity in our local community. We are a team of dreamers, innovators, and doers, united by a belief that technology can empower even the most remote communities to take control of their food production.
-<br><br>
-Our work is driven by curiosity and optimism. Every prototype is a bold experiment, every system a step toward self-sufficiency, and every harvest a triumph of determination over adversity. We approach challenges with a mindset of possibility, knowing that each solution we develop today has the potential to shape a better tomorrow. At Pragman Family Farms, we aren’t just creating tools for growing food—we’re laying the foundation for a more sustainable, equitable, and hopeful future for all.
-    </p>
-  </div>
-</div>
-
-<!-- CONTACT US SECTION -->
-<div id="contact" class="container-fluid bg-grey">
-  <div class="row text-center">
-    <h2>Get Involved / Contact Us</h2>
-<p class="body_text">
-  Want to learn more? Interested in collaborating or bringing our solutions to your community?
-  Please feel free to reach out. We love connecting with like-minded people and organizations.
-</p>
-
-  <div class="col-md-6 col-md-offset-3" id="contact-section">
-  <!-- Display flash messages if available -->
-  {% with messages = get_flashed_messages(with_categories=true) %}
-    {% if messages %}
-      <div id="flash-message" class="alert alert-{{ messages[0][0] }}">
-        {{ messages[0][1] }}
-      </div>
-    {% endif %}
-  {% endwith %}
-
-  <!-- Show the form only if no flash messages exist -->
-  {% if not get_flashed_messages() %}
-    <form method="POST" action="/contact" id="contact-form">
-      <div class="form-group">
-        <label for="name">Your Name:</label>
-        <input type="text" name="name" class="form-control" id="name" placeholder="Enter name" required>
-      </div>
-      <div class="form-group">
-        <label for="email">Your Email:</label>
-        <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" required>
-      </div>
-      <div class="form-group">
-        <label for="message">Your Message:</label>
-        <textarea class="form-control" rows="4" name="message" id="message" placeholder="Your message here" required></textarea>
-      </div>
-      <button type="submit" class="btn btn-default">Submit</button>
-    </form>
-  {% endif %}
+  <!-- ABOUT SECTION -->
+  <div id="about" class="container-fluid">
+    <div class="row text-center">
+      <h2>About Us</h2>
+      <p class="body_text">
+        Pragman Family Farms is more than a business—it’s a calling to reimagine what is possible. Our journey began in a small Alaskan garage, sparked by a passion for problem-solving and a desire to address food insecurity in our local community. We are a team of dreamers, innovators, and doers, united by a belief that technology can empower even the most remote communities to take control of their food production.
+        <br><br>
+        Our work is driven by curiosity and optimism. Every prototype is a bold experiment, every system a step toward self-sufficiency, and every harvest a triumph of determination over adversity. We approach challenges with a mindset of possibility, knowing that each solution we develop today has the potential to shape a better tomorrow. At Pragman Family Farms, we aren’t just creating tools for growing food—we’re laying the foundation for a more sustainable, equitable, and hopeful future for all.
+      </p>
     </div>
-
   </div>
-</div>
 
-<!-- FOOTER -->
-<footer class="container-fluid text-center">
-  <a href="#myPage" title="To Top">
-    <span class="glyphicon glyphicon-chevron-up"></span>
-  </a>
-  <p>Bootstrap Theme Inspiration By <a href="https://www.w3schools.com" title="Visit w3schools">www.w3schools.com</a></p>
-</footer>
-
-<!-- Add JavaScript to scroll to the flash message and auto-hide it -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    // Check if the flash message exists
-    const flashMessage = document.getElementById("flash-message");
-    if (flashMessage) {
-      // Smoothly scroll to the flash message
-      flashMessage.scrollIntoView({ behavior: "smooth", block: "start" });
-
-      // Optional: Auto-hide the flash message after 5 seconds
-      setTimeout(() => {
-        flashMessage.style.display = "none";
-      }, 5000);
-    }
-  });
-</script>
-
-<!-- Smooth Scrolling + Slide Animations -->
-<script>
-$(document).ready(function(){
-  // Add smooth scrolling to all links in navbar + footer link
-  $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
-    if (this.hash !== "") {
-      event.preventDefault();
-      var hash = this.hash;
-      $('html, body').animate({
-        scrollTop: $(hash).offset().top
-      }, 900, function(){
-        window.location.hash = hash;
-      });
-    }
-  });
-
-  $(window).scroll(function() {
-    $(".slideanim").each(function(){
-      var pos = $(this).offset().top;
-      var winTop = $(window).scrollTop();
-      if (pos < winTop + 600) {
-        $(this).addClass("slide");
-      }
-    });
-  });
-});
-</script>
-
-</body>
-</html>
+  <!-- CONTACT US SECTION -->
+  <div id="contact" class="container-fluid bg-grey">
+    <div class="row text-center">
+      <h2>Get Involved / Contact Us</h2>
+      <p class="body_text">
+        Want to learn more? Interested in collaborating or bringing our solutions to your community?
+        Please feel free to reach out. We love connecting with like-minded people and organizations.
+      </p>
+      <div class="col-md-6 col-md-offset-3" id="contact-section">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+            <div id="flash-message" class="alert alert-{{ messages[0][0] }}">
+              {{ messages[0][1] }}
+            </div>
+          {% endif %}
+        {% endwith %}
+        {% if not get_flashed_messages() %}
+          <form method="POST" action="/contact" id="contact-form">
+            <div class="form-group">
+              <label for="name">Your Name:</label>
+              <input type="text" name="name" class="form-control" id="name" placeholder="Enter name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Your Email:</label>
+              <input type="email" name="email" class="form-control" id="email" placeholder="Enter email" required>
+            </div>
+            <div class="form-group">
+              <label for="message">Your Message:</label>
+              <textarea class="form-control" rows="4" name="message" id="message" placeholder="Your message here" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+{% endblock %}
