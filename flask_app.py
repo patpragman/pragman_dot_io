@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, jsonify, abort, send_file, fl
 import smtplib
 from datetime import datetime
 import stripe
+import traceback
 
 app = Flask(__name__)
 app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
@@ -19,9 +20,10 @@ def initialize_cart():
 def get_stripe_products():
     """
     Fetch active products from Stripe with their default price expanded.
-    Each returned product will have two extra attributes:
+    Each product is augmented with:
       - price: the price in dollars (converted from cents)
       - price_id: the ID of the default price
+      - image_url: the first image URL from the product's images array (if available)
     """
     products = []
     stripe_products = stripe.Product.list(active=True, expand=["data.default_price"])
@@ -34,7 +36,9 @@ def get_stripe_products():
             prod.price_id = None
 
         if prod.metadata.get("online_sales") == "True":
+            prod.image_url = prod.images[0] if prod.images and len(prod.images) > 0 else None
             products.append(prod)
+
     return products
 
 @app.route('/')
@@ -70,10 +74,9 @@ def remove_from_cart():
 @app.route('/add-to-cart', methods=["GET", "POST"])
 def add_to_cart():
     if request.method == "POST":
-        # Expect the form to send at least: price_id (from Stripe), product_id (e.g. product name), and optionally quantity
         raw_form_data = request.form.to_dict()
         raw_form_data['ingest_time'] = datetime.utcnow().timestamp()
-        # Use the price_id as part of the unique cart item identifier
+        # Use the Stripe price_id in the unique identifier
         raw_form_data['id'] = f"{hash(raw_form_data['ingest_time'])}-{raw_form_data.get('price_id','')}"
         if 'quantity' not in raw_form_data or not raw_form_data['quantity']:
             raw_form_data['quantity'] = 1
@@ -136,6 +139,7 @@ def checkout():
     publishable_key = os.environ.get("STRIPE_PUBLISHABLE_KEY")
     return render_template("checkout.html", cart=session["cart"], total=total, publishable_key=publishable_key)
 
+
 @app.route('/create-checkout-session', methods=['POST'])
 def create_checkout_session():
     initialize_cart()
@@ -143,13 +147,11 @@ def create_checkout_session():
     for item in session["cart"]:
         quantity = int(item.get('quantity', 1))
         if item.get('price_id'):
-            # Use the pre-created Stripe price ID from the product's default price
             line_items.append({
                 'price': item['price_id'],
                 'quantity': quantity,
             })
         else:
-            # Fallback: create inline price data (if needed)
             try:
                 unit_amount = int(float(item.get('price', 0)) * 100)
             except Exception:
@@ -169,16 +171,46 @@ def create_checkout_session():
             payment_method_types=['card'],
             line_items=line_items,
             mode='payment',
+            shipping_address_collection={
+                'allowed_countries': ['US', 'CA']
+            },
+            shipping_options=[
+                {
+                    "shipping_rate_data": {
+                        "type": "fixed_amount",
+                        "fixed_amount": {"amount": 0, "currency": "usd"},
+                        "display_name": "Pickup in Anchorage",
+                        "delivery_estimate": {
+                            "minimum": {"unit": "business_day", "value": 1},
+                            "maximum": {"unit": "business_day", "value": 1}
+                        }
+                    }
+                },
+                {
+                    "shipping_rate_data": {
+                        "type": "fixed_amount",
+                        "fixed_amount": {"amount": 5000, "currency": "usd"},
+                        "display_name": "Shipping to US/Canada",
+                        "delivery_estimate": {
+                            "minimum": {"unit": "business_day", "value": 5},
+                            "maximum": {"unit": "business_day", "value": 7}
+                        }
+                    }
+                }
+            ],
             success_url=url_for('success', _external=True) + '?session_id={CHECKOUT_SESSION_ID}',
             cancel_url=url_for('checkout', _external=True),
         )
         return jsonify({'id': checkout_session.id})
     except Exception as e:
+        import traceback
+        traceback.print_exc()
         return jsonify(error=str(e)), 500
+
+
 
 @app.route('/success')
 def success():
-    # Optionally clear the cart after successful payment
     session["cart"] = []
     session.modified = True
     return render_template("success.html")
