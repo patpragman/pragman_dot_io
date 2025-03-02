@@ -204,7 +204,7 @@
 
   {% block head %}{% endblock %}
 </head>
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+<body id="main" data-spy="scroll" data-target=".navbar" data-offset="60">
 
   <!-- NAVBAR -->
   <nav class="navbar navbar-default navbar-fixed-top">
@@ -217,16 +217,16 @@
           <span class="icon-bar"></span>
         </button>
         <!-- Logo -->
-        <a class="navbar-brand" href="#myPage">
+        <a class="navbar-brand" href="#main">
           <img src="{{ url_for('static', filename='logo3.png') }}" alt="Pragman Family Farms Logo" style="height: 30px;">
         </a>
       </div>
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
-          <li><a href="#main">HOME</a></li>
-          <li><a href="#vision">OUR VISION</a></li>
-          <li><a href="#technology">TECHNOLOGY</a></li>
-          <li><a href="#about">ABOUT</a></li>
+          <li><a href="/#main">HOME</a></li>
+          <li><a href="/#vision">OUR VISION</a></li>
+          <li><a href="/#technology">TECHNOLOGY</a></li>
+          <li><a href="/#about">ABOUT</a></li>
           <li><a href="/store">STORE</a></li>
           <li><a href="#contact">CONTACT</a></li>
         </ul>
@@ -239,7 +239,7 @@
 
   <!-- FOOTER -->
   <footer class="container-fluid text-center">
-    <a href="#myPage" title="To Top">
+    <a href="#main" title="To Top">
       <span class="glyphicon glyphicon-chevron-up"></span>
     </a>
     <p>Bootstrap Theme Inspiration By <a href="https://www.w3schools.com" title="Visit w3schools">www.w3schools.com</a></p>
@@ -260,7 +260,7 @@
 
   <script>
     $(document).ready(function(){
-      $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+      $(".navbar a, footer a[href='#main']").on('click', function(event) {
         if (this.hash !== "") {
           event.preventDefault();
           var hash = this.hash;
