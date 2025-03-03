@@ -1,16 +1,14 @@
-<!-- Updated Store Template with Image Handling -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Template updated for Pragman Family Farms - Store Page -->
   <title>Pragman Family Farms - Store</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Bootstrap CSS & Google Fonts -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
 
   <!-- jQuery and Bootstrap JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -22,24 +20,20 @@
       line-height: 1.8;
       color: #818181;
     }
-    /* NAVBAR styles */
     .navbar {
       margin-bottom: 0;
       background-color: #343132;
-      z-index: 9999;
+      z-index: 10000;
       border: 0;
       font-size: 12px !important;
-      line-height: 1.42857143 !important;
       letter-spacing: 4px;
       border-radius: 0;
       font-family: Montserrat, sans-serif;
     }
-    .navbar li a,
-    .navbar .navbar-brand {
+    .navbar li a, .navbar .navbar-brand {
       color: #fff !important;
     }
-    .navbar-nav li a:hover,
-    .navbar-nav li.active a {
+    .navbar-nav li a:hover, .navbar-nav li.active a {
       color: #343132 !important;
       background-color: #fff !important;
     }
@@ -47,7 +41,6 @@
       border-color: transparent;
       color: #fff !important;
     }
-    /* Product thumbnail styles */
     .thumbnail {
       padding: 0 0 15px 0;
       border: none;
@@ -72,9 +65,8 @@
       border: 1px solid #122340;
     }
     .store-container {
-      margin-top: 80px;
+      margin-top: 120px;
     }
-    /* Floating Cart Styles */
     .floating-cart {
       position: fixed;
       right: 20px;
@@ -86,7 +78,7 @@
       border: 1px solid #ccc;
       padding: 15px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      z-index: 10000;
+      z-index: 9999;
       transition: all 0.3s ease;
     }
     .floating-cart h3 {
@@ -102,46 +94,41 @@
       width: 100%;
       margin-top: 10px;
     }
-    /* Mobile styles */
+
+    /* Ensure the cart moves below the navbar properly on mobile */
     @media (max-width: 768px) {
       .floating-cart {
+        position: relative;
+        width: 100%;
+        margin-top: 60px;
+        top: 0;
         left: 0;
         right: 0;
-        bottom: 0;
-        top: auto;
-        width: 100%;
-        max-height: 50vh;
         padding: 10px;
         font-size: 14px;
-      }
-      .floating-cart table {
-         font-size: 12px;
+        box-shadow: none;
+        border: none;
       }
       .store-container {
-         margin-top: 100px;
-      }
-      /* Make the cart header clickable to toggle cart content */
-      .floating-cart h3 {
-         cursor: pointer;
+         margin-top: 20px;
       }
       .floating-cart .cart-content {
-         display: none;
+         display: block !important;
       }
     }
   </style>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
-  <!-- NAVIGATION BAR -->
+
+  <!-- Navigation Bar -->
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
-        <!-- Collapsed menu button -->
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <!-- Logo -->
         <a class="navbar-brand" href="/#main">
           <img src="{{ url_for('static', filename='logo3.png') }}" alt="Pragman Family Farms Logo" style="height: 30px;">
         </a>
@@ -158,50 +145,6 @@
       </div>
     </div>
   </nav>
-
-  <!-- STORE CONTENT -->
-  <div class="container store-container">
-    <h2 class="text-center">Our Products</h2>
-    {% for product in products %}
-      <div class="row" style="margin-bottom:20px;">
-        <div class="col-sm-12">
-          <div class="thumbnail">
-            <!-- Use the Stripe image URL if available -->
-            {% if product.image_url %}
-              <img src="{{ product.image_url }}" alt="{{ product.name }}">
-            {% else %}
-              <img src="{{ url_for('static', filename='default.png') }}" alt="{{ product.name }}">
-            {% endif %}
-            <div class="caption">
-              <h4>{{ product.name }}</h4>
-              <p><strong>${{ "%.2f"|format(product.price) }}</strong></p>
-              <!-- "About" section toggle -->
-              <p>
-                <a class="btn btn-info btn-xs" data-toggle="collapse" href="#about-{{ loop.index }}" role="button" aria-expanded="false" aria-controls="about-{{ loop.index }}">
-                  About
-                </a>
-              </p>
-              <div class="collapse" id="about-{{ loop.index }}">
-                <p>{{ product.description }}</p>
-              </div>
-              <!-- Form for adding items to the basket -->
-              <form action="/add-to-cart" method="POST" class="form-inline" style="margin-top:10px;">
-                <div class="form-group">
-                  <label for="quantity-{{ loop.index }}">Quantity:</label>
-                  <input type="number" name="quantity" id="quantity-{{ loop.index }}" class="form-control" value="1" min="1" style="width:60px; margin-left:5px;">
-                </div>
-                <!-- Hidden fields: product_id holds the product name for display, price_id holds the Stripe price ID -->
-                <input type="hidden" name="product_id" value="{{ product.name }}">
-                <input type="hidden" name="price_id" value="{{ product.price_id }}">
-                <input type="hidden" name="price" value="{{ product.price }}">
-                <button type="submit" class="btn btn-custom">Add to Cart</button>
-              </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    {% endfor %}
-  </div>
 
   <!-- Floating Cart -->
   <div class="floating-cart">
@@ -220,16 +163,14 @@
           </thead>
           <tbody>
             {% for item in cart %}
-              {% set price = item.price | float %}
-              {% set quantity = item.quantity | int %}
-              {% set subtotal = price * quantity %}
+              {% set subtotal = item.price | float * item.quantity | int %}
               {% set ns.total = ns.total + subtotal %}
               <tr>
                 <td>{{ item.product_id }}</td>
-                <td>{{ quantity }}</td>
+                <td>{{ item.quantity }}</td>
                 <td>${{ "%.2f"|format(subtotal) }}</td>
                 <td>
-                  <form action="/remove-from-cart" method="POST" style="display:inline;">
+                  <form action="/remove-from-cart" method="POST">
                     <input type="hidden" name="id" value="{{ item.id }}">
                     <button type="submit" class="btn btn-danger btn-xs">Remove</button>
                   </form>
@@ -237,29 +178,47 @@
               </tr>
             {% endfor %}
           </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="3"><strong>Total</strong></td>
-              <td><strong>${{ "%.2f"|format(ns.total) }}</strong></td>
-            </tr>
-          </tfoot>
         </table>
         <a href="/checkout" class="btn btn-success checkout-btn">Checkout</a>
-      {% else %}
-        <div style="height: 150px;"></div>
       {% endif %}
     </div>
   </div>
 
-  <script>
-    // On mobile, toggle cart details when the cart header is clicked.
-    $(document).ready(function(){
-      if ($(window).width() < 768) {
-        $('.floating-cart h3').on('click', function(){
-          $('.floating-cart .cart-content').slideToggle();
-        });
-      }
-    });
-  </script>
+  <!-- Store Content -->
+  <div class="container store-container">
+    <h2 class="text-center">Our Products</h2>
+    {% for product in products %}
+      <div class="row" style="margin-bottom:20px;">
+        <div class="col-sm-12">
+          <div class="thumbnail">
+            {% if product.image_url %}
+              <img src="{{ product.image_url }}" alt="{{ product.name }}">
+            {% else %}
+              <img src="{{ url_for('static', filename='default.png') }}" alt="{{ product.name }}">
+            {% endif %}
+            <div class="caption">
+              <h4>{{ product.name }}</h4>
+              <p><strong>${{ "%.2f"|format(product.price) }}</strong></p>
+              <p>
+                <a class="btn btn-info btn-xs" data-toggle="collapse" href="#about-{{ loop.index }}" role="button">
+                  About
+                </a>
+              </p>
+              <div class="collapse" id="about-{{ loop.index }}">
+                <p>{{ product.description }}</p>
+              </div>
+              <form action="/add-to-cart" method="POST">
+                <input type="hidden" name="product_id" value="{{ product.name }}">
+                <input type="hidden" name="price_id" value="{{ product.price_id }}">
+                <input type="hidden" name="price" value="{{ product.price }}">
+                <button type="submit" class="btn btn-custom">Add to Cart</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
 </body>
 </html>
