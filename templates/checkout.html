@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Bootstrap CSS & Google Fonts -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <style>
@@ -22,17 +22,14 @@
       z-index: 9999;
       border: 0;
       font-size: 12px !important;
-      line-height: 1.42857143 !important;
       letter-spacing: 4px;
       border-radius: 0;
       font-family: Montserrat, sans-serif;
     }
-    .navbar li a,
-    .navbar .navbar-brand {
+    .navbar li a, .navbar .navbar-brand {
       color: #fff !important;
     }
-    .navbar-nav li a:hover,
-    .navbar-nav li.active a {
+    .navbar-nav li a:hover, .navbar-nav li.active a {
       color: #343132 !important;
       background-color: #fff !important;
     }
@@ -53,7 +50,7 @@
   <script src="https://js.stripe.com/v3/"></script>
 </head>
 <body>
-  <!-- NAVIGATION BAR (Same as store page) -->
+  <!-- NAVIGATION BAR -->
   <nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
       <div class="navbar-header">
@@ -90,6 +87,7 @@
               <th>Qty</th>
               <th>Price</th>
               <th>Subtotal</th>
+              <th>Remove</th> <!-- Added Remove Column -->
            </tr>
          </thead>
          <tbody>
@@ -104,6 +102,13 @@
                <td>{{ quantity }}</td>
                <td>${{ "%.2f"|format(price) }}</td>
                <td>${{ "%.2f"|format(subtotal) }}</td>
+               <td>
+                 <!-- Remove from Cart Form -->
+                 <form action="/remove-from-cart" method="POST">
+                   <input type="hidden" name="id" value="{{ item.id }}">
+                   <button type="submit" class="btn btn-danger btn-xs">Remove</button>
+                 </form>
+               </td>
              </tr>
            {% endfor %}
          </tbody>
@@ -111,22 +116,21 @@
            <tr>
              <td colspan="3"><strong>Total</strong></td>
              <td><strong>${{ "%.2f"|format(ns.total) }}</strong></td>
+             <td></td>
            </tr>
          </tfoot>
       </table>
       <button id="checkout-button" class="btn btn-success btn-custom">Pay with Stripe</button>
     {% else %}
-      <p>Your cart is empty.</p>
+      <p class="text-center">Your cart is empty.</p>
     {% endif %}
   </div>
 
   <script>
-    // Initialize Stripe.js with the publishable key provided by the Flask app
     var stripe = Stripe("{{ publishable_key }}");
     var checkoutButton = document.getElementById("checkout-button");
     if (checkoutButton) {
       checkoutButton.addEventListener("click", function () {
-        // Create a new Checkout Session using the server endpoint
         fetch("/create-checkout-session", {
           method: "POST",
           headers: {
@@ -137,7 +141,6 @@
           return response.json();
         })
         .then(function (session) {
-          // Redirect the customer to Stripe Checkout
           return stripe.redirectToCheckout({ sessionId: session.id });
         })
         .then(function (result) {
