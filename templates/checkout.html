@@ -8,44 +8,10 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-  <style>
-    body {
-      font: 400 15px Lato, sans-serif;
-      line-height: 1.8;
-      color: #818181;
-    }
-    .navbar {
-      margin-bottom: 0;
-      background-color: #343132;
-      z-index: 9999;
-      border: 0;
-      font-size: 12px !important;
-      letter-spacing: 4px;
-      border-radius: 0;
-      font-family: Montserrat, sans-serif;
-    }
-    .navbar li a, .navbar .navbar-brand {
-      color: #fff !important;
-    }
-    .navbar-nav li a:hover, .navbar-nav li.active a {
-      color: #343132 !important;
-      background-color: #fff !important;
-    }
-    .checkout-container {
-      margin-top: 80px;
-    }
-    .btn-custom {
-      background-color: #122340;
-      color: #fff;
-    }
-    .btn-custom:hover {
-      background-color: #fff;
-      color: #122340;
-      border: 1px solid #122340;
-    }
-  </style>
+
   <!-- Load Stripe.js -->
   <script src="https://js.stripe.com/v3/"></script>
 </head>
