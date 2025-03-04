@@ -94,8 +94,6 @@
       width: 100%;
       margin-top: 10px;
     }
-
-    /* Ensure the cart moves below the navbar properly on mobile */
     @media (max-width: 768px) {
       .floating-cart {
         position: relative;
@@ -163,7 +161,7 @@
           </thead>
           <tbody>
             {% for item in cart %}
-              {% set subtotal = item.price | float * item.quantity | int %}
+              {% set subtotal = (item.price | float) * (item.quantity | int) %}
               {% set ns.total = ns.total + subtotal %}
               <tr>
                 <td>{{ item.product_id }}</td>
@@ -207,10 +205,12 @@
               <div class="collapse" id="about-{{ loop.index }}">
                 <p>{{ product.description }}</p>
               </div>
-              <form action="/add-to-cart" method="POST">
+              <form action="/add-to-cart" method="POST" class="form-inline">
                 <input type="hidden" name="product_id" value="{{ product.name }}">
                 <input type="hidden" name="price_id" value="{{ product.price_id }}">
                 <input type="hidden" name="price" value="{{ product.price }}">
+                <label for="quantity-{{ loop.index }}">Quantity:</label>
+                <input type="number" name="quantity" id="quantity-{{ loop.index }}" value="1" min="1" class="form-control input-sm" style="width: 60px; margin-right: 5px;">
                 <button type="submit" class="btn btn-custom">Add to Cart</button>
               </form>
             </div>
