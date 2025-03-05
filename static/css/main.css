@@ -88,7 +88,7 @@ footer .glyphicon {
 }
 
 /* Responsive Adjustments for Common Elements */
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 940px) {
   .col-sm-4 {
     text-align: center;
     margin: 25px 0;
@@ -246,7 +246,7 @@ h4 {
 }
 
 /* Responsive Adjustments for Floating Cart */
-@media (max-width: 768px) {
+@media (max-width: 940px) {
   .floating-cart {
     position: relative;
     width: 100%;
@@ -264,6 +264,24 @@ h4 {
   }
   .floating-cart .cart-content {
     display: block !important;
+  }
+
+  /* Switch the form to flex column layout on smaller screens */
+  .form-inline {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  /* Ensure each element in the form gets some margin */
+  .form-inline label,
+  .form-inline input[type="number"],
+  .form-inline button {
+    margin: 5px 0;
+  }
+  /* Override the inline margin on the quantity input */
+  .form-inline input[type="number"] {
+    margin-right: 0 !important;
   }
 }
 

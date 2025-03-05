@@ -75,7 +75,7 @@
               <div class="collapse" id="about-{{ loop.index }}">
                 <p>{{ product.description }}</p>
               </div>
-              <form action="/add-to-cart" method="POST" class="form-inline">
+              <form action="/add-to-cart" method="POST" class="form-inline ">
                 <input type="hidden" name="product_id" value="{{ product.name }}">
                 <input type="hidden" name="price_id" value="{{ product.price_id }}">
                 <input type="hidden" name="price" value="{{ product.price }}">
