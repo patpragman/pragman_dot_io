@@ -115,4 +115,29 @@
       </div>
     </div>
   </div>
+
+    <!-- FOOTER -->
+  <footer class="container-fluid text-center">
+    <a href="#main" title="To Top">
+      <span class="glyphicon glyphicon-chevron-up"></span>
+    </a>
+    <p>Bootstrap Theme Inspiration By <a href="https://www.w3schools.com" title="Visit w3schools">www.w3schools.com</a></p>
+  </footer>
+
+  <!-- Smooth Scrolling Script -->
+  <script>
+    $(document).ready(function(){
+      $(".navbar a, footer a[href='#main']").on('click', function(event) {
+        if (this.hash !== "") {
+          event.preventDefault();
+          var hash = this.hash;
+          $('html, body').animate({
+            scrollTop: $(hash).offset().top
+          }, 900, function(){
+            window.location.hash = hash;
+          });
+        }
+      });
+    });
+  </script>
 {% endblock %}

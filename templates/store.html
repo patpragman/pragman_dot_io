@@ -1,149 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>Pragman Family Farms - Store</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+{% extends "base.html" %}
 
-  <!-- Bootstrap CSS & Google Fonts -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+{% block title %}Pragman Family Farms - Store{% endblock %}
 
-  <!-- jQuery and Bootstrap JS -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+{% block brand_href %}/{% endblock %}
 
-  <style>
-    body {
-      font: 400 15px Lato, sans-serif;
-      line-height: 1.8;
-      color: #818181;
-    }
-    .navbar {
-      margin-bottom: 0;
-      background-color: #343132;
-      z-index: 10000;
-      border: 0;
-      font-size: 12px !important;
-      letter-spacing: 4px;
-      border-radius: 0;
-      font-family: Montserrat, sans-serif;
-    }
-    .navbar li a, .navbar .navbar-brand {
-      color: #fff !important;
-    }
-    .navbar-nav li a:hover, .navbar-nav li.active a {
-      color: #343132 !important;
-      background-color: #fff !important;
-    }
-    .navbar-default .navbar-toggle {
-      border-color: transparent;
-      color: #fff !important;
-    }
-    .thumbnail {
-      padding: 0 0 15px 0;
-      border: none;
-      border-radius: 0;
-      text-align: center;
-    }
-    .thumbnail img {
-      max-width: 250px;
-      max-height: 200px;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-      margin-bottom: 10px;
-    }
-    .btn-custom {
-      background-color: #122340;
-      color: #fff;
-    }
-    .btn-custom:hover {
-      background-color: #fff;
-      color: #122340;
-      border: 1px solid #122340;
-    }
-    .store-container {
-      margin-top: 120px;
-    }
-    .floating-cart {
-      position: fixed;
-      right: 20px;
-      top: 100px;
-      width: 350px;
-      max-height: calc(100vh - 120px);
-      overflow-y: auto;
-      background-color: #fff;
-      border: 1px solid #ccc;
-      padding: 15px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      z-index: 9999;
-      transition: all 0.3s ease;
-    }
-    .floating-cart h3 {
-      text-align: center;
-      margin-top: 0;
-      cursor: default;
-    }
-    .floating-cart table {
-      width: 100%;
-    }
-    .floating-cart .checkout-btn {
-      display: block;
-      width: 100%;
-      margin-top: 10px;
-    }
-    @media (max-width: 768px) {
-      .floating-cart {
-        position: relative;
-        width: 100%;
-        margin-top: 60px;
-        top: 0;
-        left: 0;
-        right: 0;
-        padding: 10px;
-        font-size: 14px;
-        box-shadow: none;
-        border: none;
-      }
-      .store-container {
-         margin-top: 20px;
-      }
-      .floating-cart .cart-content {
-         display: block !important;
-      }
-    }
-  </style>
-</head>
-<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+{% block nav_links %}
+  <li><a href="/">HOME</a></li>
+  <li><a href="/#vision">OUR VISION</a></li>
+  <li><a href="/#technology">TECHNOLOGY</a></li>
+  <li><a href="/#about">ABOUT</a></li>
+  <li><a href="/store">STORE</a></li>
+  <li><a href="#contact">CONTACT</a></li>
+{% endblock %}
 
-  <!-- Navigation Bar -->
-  <nav class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="/#main">
-          <img src="{{ url_for('static', filename='logo3.png') }}" alt="Pragman Family Farms Logo" style="height: 30px;">
-        </a>
-      </div>
-      <div class="collapse navbar-collapse" id="myNavbar">
-        <ul class="nav navbar-nav navbar-right">
-          <li><a href="/#main">HOME</a></li>
-          <li><a href="/#vision">OUR VISION</a></li>
-          <li><a href="/#technology">TECHNOLOGY</a></li>
-          <li><a href="/#about">ABOUT</a></li>
-          <li><a href="/#store">STORE</a></li>
-          <li><a href="/#contact">CONTACT</a></li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
+{% block content %}
   <!-- Floating Cart -->
   <div class="floating-cart">
     <h3>Shopping Cart</h3>
@@ -186,7 +56,7 @@
   <div class="container store-container">
     <h2 class="text-center">Our Products</h2>
     {% for product in products %}
-      <div class="row" style="margin-bottom:20px;">
+      <div class="row text-center" style="margin-bottom:20px;">
         <div class="col-sm-12">
           <div class="thumbnail">
             {% if product.image_url %}
@@ -205,7 +75,7 @@
               <div class="collapse" id="about-{{ loop.index }}">
                 <p>{{ product.description }}</p>
               </div>
-              <form action="/add-to-cart" method="POST" class="form-inline">
+              <form action="/add-to-cart" method="POST" class="form-inline ">
                 <input type="hidden" name="product_id" value="{{ product.name }}">
                 <input type="hidden" name="price_id" value="{{ product.price_id }}">
                 <input type="hidden" name="price" value="{{ product.price }}">
@@ -219,6 +89,4 @@
       </div>
     {% endfor %}
   </div>
-
-</body>
-</html>
+{% endblock %}
