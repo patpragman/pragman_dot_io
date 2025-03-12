@@ -4,15 +4,6 @@
 
 {% block brand_href %}/{% endblock %}
 
-{% block nav_links %}
-  <li><a href="/">HOME</a></li>
-  <li><a href="/#vision">OUR VISION</a></li>
-  <li><a href="/#technology">TECHNOLOGY</a></li>
-  <li><a href="/#about">ABOUT</a></li>
-  <li><a href="/store">STORE</a></li>
-  <li><a href="#contact">CONTACT</a></li>
-{% endblock %}
-
 {% block content %}
   <!-- Floating Cart -->
   <div class="floating-cart">
@@ -47,7 +38,7 @@
             {% endfor %}
           </tbody>
         </table>
-        <a href="/checkout" class="btn btn-success checkout-btn">Checkout</a>
+        <button id="checkout-button" class="btn btn-success checkout-btn">Pay with Stripe</button>
       {% endif %}
     </div>
   </div>
@@ -89,4 +80,56 @@
       </div>
     {% endfor %}
   </div>
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script>
+    console.log("Checkout script loaded.");
+    document.addEventListener("DOMContentLoaded", function() {
+      console.log("DOM fully loaded.");
+      var stripeKey = "{{ publishable_key }}";
+      console.log("Stripe publishable key:", stripeKey);
+      if (!stripeKey) {
+        console.error("Stripe publishable key is missing.");
+        return;
+      }
+      var stripe = Stripe(stripeKey);
+      var checkoutButton = document.getElementById("checkout-button");
+      console.log("Found checkout button:", checkoutButton);
+      if (!checkoutButton) {
+        console.error("Checkout button not found.");
+        return;
+      }
+      checkoutButton.addEventListener("click", function () {
+        console.log("Checkout button clicked.");
+        fetch("/create-checkout-session", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" }
+        })
+        .then(function (response) {
+          console.log("Response status from /create-checkout-session:", response.status);
+          return response.json();
+        })
+        .then(function (session) {
+          console.log("Received session object:", session);
+          if (!session || !session.id) {
+            console.error("Session ID not found in response.", session);
+            alert("There was an error creating the checkout session. Please try again.");
+            return;
+          }
+          stripe.redirectToCheckout({ sessionId: session.id })
+            .then(function (result) {
+              if (result.error) {
+                console.error("Error during redirectToCheckout:", result.error);
+                alert(result.error.message);
+              }
+            });
+        })
+        .catch(function (error) {
+          console.error("Fetch error:", error);
+        });
+      });
+    });
+  </script>
 {% endblock %}

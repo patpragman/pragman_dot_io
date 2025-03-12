@@ -49,8 +49,9 @@ def index():
 def store():
     initialize_cart()
     products = get_stripe_products()
-    print("Current cart:", session['cart'])
-    return render_template("store.html", products=products, cart=session['cart'])
+    publishable_key = os.environ.get("STRIPE_PUBLISHABLE_KEY")
+
+    return render_template("store.html", products=products, cart=session['cart'], publishable_key=publishable_key)
 
 @app.route("/clear-cart")
 def clear_cart():
@@ -66,10 +67,10 @@ def remove_from_cart():
         session['cart'] = [item for item in session['cart'] if item.get('id') != hash_to_remove]
         session.modified = True
         products = get_stripe_products()
-        return render_template("store.html", products=products, cart=session['cart'])
+        return redirect(url_for("store"))
     else:
         products = get_stripe_products()
-        return render_template("store.html", products=products, cart=session['cart'])
+        return redirect(url_for("store"))
 
 @app.route('/add-to-cart', methods=["GET", "POST"])
 def add_to_cart():
@@ -84,11 +85,11 @@ def add_to_cart():
         print("Cart after adding item:", session['cart'])
         session.modified = True
         products = get_stripe_products()
-        return render_template("store.html", products=products, cart=session['cart'])
+        return redirect(url_for("store"))
     else:
         products = get_stripe_products()
         print("Cart:", session['cart'])
-        return render_template("store.html", products=products, cart=session["cart"])
+        return redirect(url_for("store"))
 
 @app.route('/contact', methods=["GET", "POST"])
 def contact():
@@ -127,17 +128,7 @@ def dice():
 
 # ----------------- Stripe Checkout Integration -----------------
 
-@app.route('/checkout')
-def checkout():
-    initialize_cart()
-    total = 0
-    for item in session["cart"]:
-        try:
-            total += float(item.get('price', 0)) * int(item.get('quantity', 1))
-        except Exception:
-            pass
-    publishable_key = os.environ.get("STRIPE_PUBLISHABLE_KEY")
-    return render_template("checkout.html", cart=session["cart"], total=total, publishable_key=publishable_key)
+
 
 
 @app.route('/create-checkout-session', methods=['POST'])
@@ -199,7 +190,7 @@ def create_checkout_session():
                 }
             ],
             success_url=url_for('success', _external=True) + '?session_id={CHECKOUT_SESSION_ID}',
-            cancel_url=url_for('checkout', _external=True),
+            cancel_url=url_for('store', _external=True),
         )
         return jsonify({'id': checkout_session.id})
     except Exception as e:
