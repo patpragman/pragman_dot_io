@@ -53,6 +53,15 @@ def store():
 
     return render_template("store.html", products=products, cart=session['cart'], publishable_key=publishable_key)
 
+@app.route('/services')
+def services():
+    initialize_cart()
+    products = get_stripe_products()
+    publishable_key = os.environ.get("STRIPE_PUBLISHABLE_KEY")
+
+    return render_template("services.html")
+
+
 @app.route("/clear-cart")
 def clear_cart():
     session["cart"] = []  # Reset cart
