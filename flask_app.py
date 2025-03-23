@@ -35,6 +35,9 @@ def get_stripe_products():
             prod.price = None
             prod.price_id = None
 
+        prod.inventory = int(prod.metadata.get("inventory", 0))
+
+
         if prod.metadata.get("online_sales") == "True":
             prod.image_url = prod.images[0] if prod.images and len(prod.images) > 0 else None
             products.append(prod)

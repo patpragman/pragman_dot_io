@@ -3,48 +3,65 @@
 {% block title %}Pragman Family Farms - Services{% endblock %}
 
 {% block content %}
-  <!-- MAIN JUMBOTRON -->
-  <div id="main" class="jumbotron text-center" style="color: #343132; background-image: url('{{ url_for('static', filename='skyline.png') }}');">
-    <h1 style="font: bold">Our Services</h1>
-  </div>
+<!-- MAIN JUMBOTRON -->
+<div id="main" class="jumbotron text-center" style="color: #343132; background-image: url('{{ url_for('static', filename='skyline.png') }}'); background-size: cover; background-position: center;">
+  <h1 style="font-weight: bold;">Our Services</h1>
+</div>
 
-  <!-- INTRODUCTION SECTION -->
-  <div id="intro" class="container-fluid">
-    <div class="row text-center">
+<!-- INTRODUCTION SECTION -->
+<div id="intro" class="container-fluid">
+  <div class="row text-center">
+    <div class="col-12">
       <h2>More Than Just a Farm</h2>
       <p class="body_text">
         At Pragman Family Farms, we’re proud of our roots in sustainable agriculture—but we’re also passionate about all things STEM. We’re not only a farm—we also offer custom software, custom machine learning solutions that apply to your business problems, web apps (like this one), and hands-on guidance on how to leverage new AI tools. The goal of our business is blending technology with a DIY solarpunk spirit in Alaska. We're "makers" here—and if you've got a problem, we'd like to take a shot at solving it.
       </p>
+
+      <h2>Need something 3D printed?</h2>
+      <p class="body_text">
+        We’ve got a fleet of Bambu Lab X1C 3D printers ready to help you prototype, build, or experiment. These machines are fast, precise, and can handle all sorts of materials—perfect for custom parts, small-batch manufacturing, or creative projects. If you’ve got an idea, we can help make it real.
+      </p>
     </div>
   </div>
+</div>
 
-  <!-- SERVICES SECTION -->
-  <div id="services" class="container-fluid" style="margin-top: 30px;">
-    <div class="row text-center">
-      <!-- Custom AI Solutions & AI Tool Guidance -->
-      <div class="col-sm-4">
-        <div class="thumbnail">
-          <img src="{{ url_for('static', filename='ai_solutions.png') }}" alt="Custom AI Solutions & AI Tool Guidance">
+<!-- SERVICES SECTION -->
+<div id="services" class="container-fluid" style="margin-top: 30px;">
+  <div class="row text-center">
+    <!-- Service Card 1 -->
+    <div class="col-sm-12 col-md-4 mb-4">
+      <div class="thumbnail" style="border: none; padding: 0;">
+        <img src="{{ url_for('static', filename='ai_solutions.png') }}" alt="Custom AI Solutions & AI Tool Guidance"
+             style="width: 100%; height: auto; display: block;">
+        <div style="padding: 15px;">
           <h3>Custom AI & Tool Guidance</h3>
           <p>
             We develop tailored AI models and provide guidance on using the latest AI tools to enhance your business and creative projects. Learn how to harness AI for smarter decisions.
           </p>
         </div>
       </div>
-      <!-- Custom Software & Web Solutions -->
-      <div class="col-sm-4">
-        <div class="thumbnail">
-          <img src="{{ url_for('static', filename='custom_software.png') }}" alt="Custom Software & Web Solutions">
+    </div>
+
+    <!-- Service Card 2 -->
+    <div class="col-sm-12 col-md-4 mb-4">
+      <div class="thumbnail" style="border: none; padding: 0;">
+        <img src="{{ url_for('static', filename='custom_software.png') }}" alt="Custom Software & Web Solutions"
+             style="width: 100%; height: auto; display: block;">
+        <div style="padding: 15px;">
           <h3>Custom Software & Web Solutions</h3>
           <p>
             Need a web app or custom software that speaks your language? We build intuitive solutions that help your business or project thrive, no matter how remote your location.
           </p>
         </div>
       </div>
-      <!-- Sustainable Tech & IoT -->
-      <div class="col-sm-4">
-        <div class="thumbnail">
-          <img src="{{ url_for('static', filename='sustainable_tech.png') }}" alt="Sustainable Tech & IoT">
+    </div>
+
+    <!-- Service Card 3 -->
+    <div class="col-sm-12 col-md-4 mb-4">
+      <div class="thumbnail" style="border: none; padding: 0;">
+        <img src="{{ url_for('static', filename='sustainable_tech.png') }}" alt="Sustainable Tech & IoT"
+             style="width: 100%; height: auto; display: block;">
+        <div style="padding: 15px;">
           <h3>Sustainable Tech & IoT</h3>
           <p>
             Embrace the future with energy-efficient systems and DIY IoT solutions designed to integrate seamlessly with a solarpunk lifestyle. We’re here to make high-tech sustainable and affordable.
@@ -53,52 +70,27 @@
       </div>
     </div>
   </div>
+</div>
 
-  <!-- PROCESS SECTION -->
-  <div id="process" class="container-fluid" style="margin-top: 30px;">
-    <div class="row text-center">
-      <h2>How We Work</h2>
-      <p class="body_text">
-        Our process is as hands-on as it gets. We begin by understanding your unique challenges, then design and implement solutions that blend cutting-edge AI and sustainable technology. And yes, we have a sense of humor about it—after all, isn't this supposed to be fun?
-      </p>
-      <div class="row" style="margin-top: 20px;">
-        <div class="col-sm-4">
-          <h4>Consult & Plan</h4>
-          <p>We listen to your needs and develop a customized plan that fits your goals and environment.</p>
-        </div>
-        <div class="col-sm-4">
-          <h4>Build & Integrate</h4>
-          <p>Our team gets to work, creating solutions that are both innovative and practical.</p>
-        </div>
-        <div class="col-sm-4">
-          <h4>Support & Optimize</h4>
-          <p>We stay with you every step of the way, providing ongoing support and adjustments as your needs evolve.</p>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- ABOUT US SECTION -->
-  <div id="about" class="container-fluid" style="margin-top: 30px;">
-    <div class="row text-center">
+<!-- ABOUT US SECTION -->
+<div id="about" class="container-fluid" style="margin-top: 30px;">
+  <div class="row text-center">
+    <div class="col-12">
       <h2>About Us</h2>
+      <img src="{{ url_for('static', filename='cyber-puffin-approved.png') }}" alt="Cyber Puffin Approved" class="img-fluid" style="max-width: 200px; margin: 20px auto;">
       <p class="body_text">
-Pat has a rich background in aviation, having spent nearly 15 years as a professional pilot while honing his technical skills along the way. Alongside his flying career, he deepened his expertise by earning a Bachelor's in Mathematics and later advancing his knowledge with a master's degree in Computer Vision. Pat has since applied his skills, using cutting-edge computer vision technology to help combat invasive species in Alaska. Laura, who grew up on a dairy farm, brings her immense practicality and a green thumb, along with a robust background in nursing that combines compassion with practical healthcare insights. Together, Pat and Laura blend technical innovation with a heartfelt commitment to care in all that they do.
-
-
-
-
-
-
+        Pat has a rich background in aviation, having spent nearly 15 years as a professional pilot while honing his technical skills along the way. Alongside his flying career, he deepened his expertise by earning a Bachelor's in Mathematics and later advancing his knowledge with a master's degree in Computer Vision. Pat has since applied his skills, using cutting-edge computer vision technology to help combat invasive species in Alaska. Laura, who grew up on a dairy farm, brings her immense practicality and a green thumb, along with a robust background in nursing that combines compassion with practical healthcare insights. Together, Pat and Laura blend technical innovation with a heartfelt commitment to care in all that they do.
       </p>
     </div>
   </div>
+</div>
 
-  <!-- FOOTER -->
-  <footer class="container-fluid text-center" style="margin-top: 30px;">
-    <a href="/#top" title="Back to Home">
-      <span class="glyphicon glyphicon-chevron-up"></span>
-    </a>
-    <p>Bootstrap Theme Inspiration By <a href="https://www.w3schools.com" title="Visit w3schools">www.w3schools.com</a></p>
-  </footer>
+<!-- FOOTER -->
+<footer class="container-fluid text-center" style="margin-top: 30px;">
+  <a href="/#top" title="Back to Home">
+    <span class="glyphicon glyphicon-chevron-up"></span>
+  </a>
+  <p>Bootstrap Theme Inspiration By <a href="https://www.w3schools.com" title="Visit w3schools">www.w3schools.com</a></p>
+</footer>
 {% endblock %}
