@@ -185,7 +185,7 @@ def create_checkout_session():
                         "display_name": "Pickup in Anchorage",
                         "delivery_estimate": {
                             "minimum": {"unit": "business_day", "value": 1},
-                            "maximum": {"unit": "business_day", "value": 1}
+                            "maximum": {"unit": "business_day", "value": 7}
                         }
                     }
                 },
@@ -195,8 +195,8 @@ def create_checkout_session():
                         "fixed_amount": {"amount": 5000, "currency": "usd"},
                         "display_name": "Shipping to US/Canada",
                         "delivery_estimate": {
-                            "minimum": {"unit": "business_day", "value": 5},
-                            "maximum": {"unit": "business_day", "value": 7}
+                            "minimum": {"unit": "business_day", "value": 7},
+                            "maximum": {"unit": "business_day", "value": 14}
                         }
                     }
                 }
