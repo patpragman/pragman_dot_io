@@ -1,0 +1,5 @@
+User-agent: Googlebot
+Disallow: /create-checkout-session/
+
+User-agent: *
+Allow: /

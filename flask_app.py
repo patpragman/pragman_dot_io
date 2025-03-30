@@ -134,6 +134,12 @@ def download_bib():
     path = os.path.join(os.getcwd(), "static", "quickbib.pdf")
     return send_file(path, as_attachment=True)
 
+@app.route('/robots.txt')
+def robots():
+    path = os.path.join(os.getcwd(), "static", "robots.txt")
+    return send_file(path)
+
+
 @app.route('/dice')
 def dice():
     return render_template("dice.html")
