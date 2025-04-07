@@ -134,6 +134,11 @@ def download_bib():
     path = os.path.join(os.getcwd(), "static", "quickbib.pdf")
     return send_file(path, as_attachment=True)
 
+@app.route('/instructions-mark3')
+def instructions_mark3():
+    path = os.path.join(os.getcwd(), "static", "instructions-mark3.pdf")
+    return send_file(path, as_attachment=True)
+
 @app.route('/robots.txt')
 def robots():
     path = os.path.join(os.getcwd(), "static", "robots.txt")
