@@ -203,7 +203,7 @@ def create_checkout_session():
                 {
                     "shipping_rate_data": {
                         "type": "fixed_amount",
-                        "fixed_amount": {"amount": 5000, "currency": "usd"},
+                        "fixed_amount": {"amount": 25000, "currency": "usd"},
                         "display_name": "Shipping to US/Canada",
                         "delivery_estimate": {
                             "minimum": {"unit": "business_day", "value": 7},
